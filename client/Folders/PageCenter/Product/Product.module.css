@@ -1,0 +1,65 @@
+.Product {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.ProComBTN {
+    position: absolute;
+    top: 0;
+    right: -40px;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.ProComBTNActive {
+    right: 12px;
+    opacity: 1;
+    transition: 0.4s;
+
+}
+
+.ProComBTN svg {
+    background-color: #2a2a2a;
+    border: 1.5px solid #2a2a2a;
+    color: #f1f1f1;
+    border-radius: 50%;
+    font-size: 35px;
+    padding: 6px;
+    margin: 0.3rem 0;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.ProComBTN svg:hover {
+    background-color: transparent;
+    color: #000;
+    transition: 0.4s;
+}
+
+.proDis {
+    text-align: center;
+    padding: 0 0.4rem;
+}
+
+.proDis h4 {
+    font-weight: bold;
+    font-size: 18px;
+}
+.disIT  {
+    color: #a2a2a2;
+    display: block;
+    margin: 0.4rem 0;
+    font-size: 14px;
+}
+.price{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+}

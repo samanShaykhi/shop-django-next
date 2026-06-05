@@ -1,0 +1,116 @@
+.HeadFoot {
+    background-image: url('/images/headfot.png');
+    background-color: rgb(138, 138, 138);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding: 3rem 0;
+}
+
+.HeadFoot h6 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.footer {
+    background-color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+}
+.MinFooter{
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+}
+.ItemFooter {
+    width: 25%;
+    color: #777;
+    margin-bottom: auto;
+    margin-left: 3rem;
+}
+.ItemFooter:last-child{
+    margin-left: 0;
+
+}
+.label {
+    margin-bottom: 1rem;
+}
+
+.label label {
+    font-weight: bold;
+    color: #fff;
+    font-size: 18px;
+}
+
+.TRS p {
+    text-align: justify;
+    transition: 0.4s;
+    line-height: 30px;
+}
+
+.TRS p:hover {
+    color: var(--minColer);
+    transition: 0.4s;
+}
+
+.TRX {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.TRX a {
+    margin-left: 1rem;
+    border: 1.5px solid #fff;
+    padding: 0.6rem;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.TRX a:hover {
+    border-color: var(--minColer);
+    color: #fff;
+    transition: 0.4s;
+}
+
+.TRX a svg {
+    font-size: 19px;
+}
+
+.IENE {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.IENE img {
+    object-fit: cover;
+}
+
+.LYOP ul li {
+    margin: 0.5rem 0;
+    transition: 0.4s;
+}
+
+.LYOP ul li:hover {
+    color: var(--minColer);
+    transition: 0.4s;
+}
+.FRTFX{
+    margin-top: 2rem;
+    border-top: 1.5px solid #6a6a6a;
+}
+.FRTFX span {
+    color: #7b7b7b;
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 13px;
+    
+}

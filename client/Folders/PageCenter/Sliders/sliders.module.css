@@ -1,0 +1,16 @@
+.Slider {
+  position: relative;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  direction: ltr;
+}
+
+.Slider:hover .BTNBox {
+  opacity: 1;
+  transition: 0.05s;
+}
+
+.BTNBox {
+  opacity: 0;
+  transition: 0.05s;
+}

@@ -1,0 +1,58 @@
+.Header{
+    border-bottom: 2px solid rgb(222, 222, 222) ;
+}
+.headerBox {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.IconeBox {
+    display: flex;
+    align-items: center;
+}
+
+.IconeBox div:last-child {
+    margin-left: 0 !important;
+}
+
+.IconeBox div svg {
+    cursor: pointer;
+}
+
+.IconeBox .Heart,
+.bag {
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.bag,
+.Heart {
+    position: relative;
+}
+
+.Heart span {
+    right: -11 !important;
+}
+
+.bag span,
+.Heart span {
+    position: absolute;
+    transition: all 0.2s ease;
+    display: block;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    background: red;
+    color: #fff;
+    top: -2px;
+    right: -5px;
+}

@@ -1,0 +1,81 @@
+.ListaMenu {
+    display: flex;
+}
+
+.itemMenu {
+    margin: 0 0.4rem;
+    padding: 1.5rem 0;
+}
+
+.linkmenu {
+    display: flex;
+}
+
+.linkmenu svg {
+    width: 14px;
+}
+
+.megamenuLi:hover>.megamenu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.megamenu {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 60px;
+    justify-content: space-between;
+    inset-inline-start: 0;
+    opacity: 0;
+    transform: translateY(15px);
+    pointer-events: none;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    z-index: 1;
+}
+.ItemMegamenu {
+    margin-left: 1rem;
+}
+
+.ItemMegamenu:last-child {
+    margin-right: 0;
+
+}
+
+.ItemMegamenu label {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.ItemMegamenu .menuMegamenuItem {
+    margin-top: 0.5rem;
+}
+
+.ItemMegamenu .menuMegamenuItem li {
+    margin: 0.5rem 0;
+    color: #727272;
+    font-size: 14.5px;
+    font-weight: 600;
+}
+
+.BadgeHot {
+    color: #e62a65 !important;
+    background-color: rgba(230, 42, 101, 0.13) !important;
+}
+
+.BadgeNew,
+.BadgeHot {
+    color: #199588;
+    background-color: rgba(25, 149, 136, 0.13);
+    padding: 0.2em 0.6em;
+    border-radius: 4px;
+    font-size: 10px;
+}

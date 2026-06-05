@@ -1,0 +1,59 @@
+.Banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.Banner:hover.Banner img{
+    transform: scale(1.1);
+    transition: all 0.8s;
+}
+.Banner img {
+    transition: all 0.8s;
+    object-fit: cover;
+
+}
+
+.DBRTY {
+    width: 45%;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+.Title {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 36px;
+    letter-spacing: 0px;
+    margin: 1.2rem 0;
+}
+
+.shortTitle {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #1E1E1E;
+}
+
+.disB {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: #1e1e1e;
+}
+
+.Mor button:hover {
+    border: transparent;
+    transition: all 0.08s;
+}
+
+.Mor button {
+    transition: all 0.08s;
+    margin: 0.5rem 0;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 2px solid var(--minColer);
+}

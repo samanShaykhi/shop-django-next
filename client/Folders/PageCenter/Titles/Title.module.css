@@ -1,0 +1,51 @@
+.TitleBox {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.Title {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    width: 35%;
+    background-color: #e0e0e0;
+    position: relative;
+}
+
+.Title::after {
+    content: '';
+    width: 120px;
+    height: 120px;
+    background-color: #e0e0e0;
+    position: absolute;
+    top: 0;
+    left: -23px;
+    transform: rotate(23deg)
+}
+
+.Title h3 {
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.BtnBox {
+    padding: 1rem;
+    width: 100%;
+    background-color: #434343;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.BtnItem {
+    margin-right: 1rem;
+}
+
+.BtnItem {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 0.8rem;
+}

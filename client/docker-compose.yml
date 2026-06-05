@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # سرویس توسعه با Hot Reload
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app                    # همگام‌سازی لحظه‌ای کدها
+      - /app/node_modules         # جلوگیری از overwrite شدن node_modules
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+    stdin_open: true
+    tty: true
+
+  # سرویس تولید (بدون Hot Reload، سبک و بهینه)
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4080:3000"               
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+    restart: unless-stopped

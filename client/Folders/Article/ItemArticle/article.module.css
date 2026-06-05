@@ -1,0 +1,46 @@
+.IMG {
+    position: relative;
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.Article:hover .IMG img {
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+.IMG img {
+    transition: 0.4s;
+}
+.DATE span{
+    display: block;
+    font-size: 13.5px ;
+    font-weight: 500;
+    margin: 0.8rem 0;
+}
+.TextAX h4{
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    margin: 0px 0px 6px 0px;
+}
+.TextAX p{
+    font-size: 14px;
+    color: rgb(128, 128, 128);
+}
+
+.Mor:hover {
+    border: transparent;
+    transition: all 0.08s;
+}
+
+.Mor {
+    transition: all 0.08s;
+    margin: 0.5rem 0;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 2px solid var(--minColer);
+    display: inline-block;
+}

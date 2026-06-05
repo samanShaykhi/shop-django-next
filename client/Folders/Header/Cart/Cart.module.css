@@ -1,0 +1,117 @@
+.boxCart {
+    position: absolute;
+    top: 50px;
+    z-index: 3;
+    background-color: #fff;
+    width: 390px;
+    left: 0px;
+    border-radius: 6px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.boxCartActive {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+
+.NumAddToCart {
+    padding: 0 1rem;
+    font-size: 12px;
+    border-bottom: 1px solid #e3e3e3;
+    line-height: 60px;
+    margin-bottom: 0.5rem;
+}
+
+.RUIOK {
+    height: 320px;
+    padding: 1rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bodyCart {
+    display: flex;
+    flex-direction: column;
+    /* margin: 1rem 0; */
+    border-bottom: 1px solid #d5d5d5;
+    padding: 1.5rem 0;
+}
+
+.bodyCart:last-child {
+    border-bottom: none !important;
+}
+
+.Cart {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+}
+
+.ImgCart {
+    margin-left: 0.4rem;
+}
+
+.disCart h5 {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 32px;
+}
+
+.OderCart {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.OderCart div {
+    display: flex;
+    border: 1.5px solid rgb(207, 207, 207);
+    padding: 0.5rem;
+    color: rgb(223, 0, 0);
+    border-radius: 6px;
+    margin-left: 1.5rem;
+}
+
+.OderCart div span {
+    margin: 0 1rem;
+    font-weight: bold;
+
+}
+
+.priceItem {
+    font-weight: bold;
+
+}
+
+.FooterCart {
+    border-top: 1px solid #b4b4b4;
+    /* margin: 1.5rem 0; */
+    padding: 1rem 1rem;
+    background-color: #fff;
+}
+
+.bfc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.labF {
+    font-size: 11.5px;
+    color: #8d8d8d;
+}
+
+.BTNAddToCart {
+    background-color: #f00101;
+    color: #fff;
+    padding: 0.7rem;
+    border-radius: 7px;
+}

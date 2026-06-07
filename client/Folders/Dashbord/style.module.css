@@ -1,0 +1,38 @@
+.dashbordLayout{
+    display: flex;
+    justify-content: space-between;
+}
+.sidebarDashbord{
+    width: 15%;
+    background-color: #212631;
+    overflow: auto;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+}
+.sidebarDashbord::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* track (پس‌زمینه) */
+.sidebarDashbord::-webkit-scrollbar-track {
+  background: #212631;
+}
+
+/* thumb (دسته اسکرول) */
+.sidebarDashbord::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 8px;
+}
+
+/* hover حالت */
+.sidebarDashbord::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.contentDashbord{
+    width: 100%;
+    background-color: #fffaf4;
+    padding: 0 1.5rem;
+    padding-right: 260px;
+}

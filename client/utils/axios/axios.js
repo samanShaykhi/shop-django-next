@@ -1,5 +1,8 @@
 import axios from "axios";
 import { ApiUrl } from "./apiUrl";
+import { useAppDispatch } from "@/Folders/store/hooks";
+import { store } from "@/Folders/store/store";
+import { setToken } from "@/Folders/store/features/auth";
 
 
 export const axiosConfig = axios.create({
@@ -10,7 +13,46 @@ export const axiosConfig = axios.create({
 
 axiosConfig.interceptors.response.use(
     res => res,
-    error => {
+    async error => {
+        const originalRequest = error.config;
+        if (
+            error.response?.status === 401 &&
+            !originalRequest._retry
+        ) {
+
+            originalRequest._retry = true;
+
+            try {
+                const dispatch = useAppDispatch()
+                const refreshResponse =
+                    await axiosConfig(
+                        '/account/refresh',
+                        { method: "POST" }
+                    );
+
+                const newAccess =
+                    refreshResponse.data.token;
+
+                store.dispatch(setToken(refreshResponse.data))
+
+                originalRequest.headers.Authorization =
+                    `Bearer ${newAccess}`;
+
+                return axiosConfig(originalRequest);
+
+            } catch {
+                console.log('time out refreshtoken')
+                // store.dispatch(logout());
+
+                // window.location.href =
+                //     "/login";
+
+                // return Promise.reject(error);
+            }
+
+        }
+
+
         // Network error (سرور خاموش، timeout و غیره)
         if (!error.response) {
             return Promise.reject({

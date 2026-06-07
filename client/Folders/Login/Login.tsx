@@ -1,11 +1,11 @@
 'use client'
 import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { axiosConfig } from '../../utils/axios/axios'
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { setToken } from '../store/features/auth'
+import { FaArrowRight } from 'react-icons/fa6'
 export default function Login () {
   const { token, user, loading, error } = useAppSelector(state => state.auth)
   const dispatch = useAppDispatch()
@@ -36,7 +36,7 @@ export default function Login () {
         <div className=' h-[calc(100vh-160px)]'></div>
         <div className=' w-[500px] mx-auto mt-[3rem] border-[2px] border-[#d5d5d5] p-[1.5rem] rounded-[8px] h-[100%]'>
           <div className='flex items-center justify-between mb-[3rem]'>
-            <ArrowRight
+            <FaArrowRight
               onClick={() => router.back()}
               className='cursor-pointer'
               size={25}

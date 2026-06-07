@@ -2,7 +2,8 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight, LucideX } from 'lucide-react'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6'
+import { AiOutlineClose } from 'react-icons/ai'
 interface ProductGalleryProps {
   images: { src: string; alt: string }[]
   isRtl?: boolean
@@ -103,9 +104,7 @@ export default function GalleryProduct ({
     >
       <div className={`flex ${zoomInSlider && 'justify-center w-[90%]'} `}>
         <div className='h-[590px] overflow-hidden'>
-          <div
-            ref={containerThumbnailRef}
-          >
+          <div ref={containerThumbnailRef}>
             {images.map((img, index) => {
               return (
                 <div
@@ -173,7 +172,7 @@ export default function GalleryProduct ({
             }  mx-2 p-2 bg-black text-white shadow rounded absolute right-0 top-[35%] cursor-pointer`}
             onClick={BTNPreviouseHandle}
           >
-            <ChevronRight />
+            <FaChevronRight />
           </button>
           <button
             onClick={BTN_NextHandle}
@@ -181,13 +180,13 @@ export default function GalleryProduct ({
               !(curentIndex < images.length - 1) && 'opacity-[0.4]'
             } mx-2 p-2 bg-black text-white shadow rounded absolute left-0 top-[35%] cursor-pointer`}
           >
-            <ChevronLeft />
+            <FaChevronLeft />
           </button>
         </div>
       </div>
       {zoomInSlider && (
         <div className='w-[8%]'>
-          <LucideX
+          <AiOutlineClose
             size={35}
             className='cursor-pointer'
             onClick={() => setzoomInSlider(false)}

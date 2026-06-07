@@ -1,7 +1,5 @@
-export default function page (){
-  return(
-    <div>
-      saman
-    </div>
-  )
+import Dashbord from '@/Folders/Dashbord/Dashbord'
+
+export default function page () {
+  return <Dashbord />
 }

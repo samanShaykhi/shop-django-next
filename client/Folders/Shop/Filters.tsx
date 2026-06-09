@@ -1,6 +1,7 @@
-import { ChevronDown, Search } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import { CiSearch } from 'react-icons/ci'
+import { FaChevronDown } from 'react-icons/fa6'
 
 interface ContainerType {
   children: React.ReactNode
@@ -22,7 +23,7 @@ const Container = ({ children, label, is_active }: ContainerType) => {
             isOpen ? 'rotate-90' : 'rotate-0'
           }`}
         >
-          <ChevronDown />
+          <FaChevronDown />
         </span>
       </div>
       <div
@@ -94,7 +95,7 @@ export default function Filters () {
               placeholder='جستجو کن'
             />
             <div className='border border-r-0 rounded-bl rounded-tl border-white p-2 cursor-pointer'>
-              <Search className='' />
+              <CiSearch className='' />
             </div>
           </div>
         </Container>

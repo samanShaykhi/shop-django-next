@@ -1,6 +1,5 @@
 import axios from "axios";
 import { ApiUrl } from "./apiUrl";
-import { useAppDispatch } from "@/Folders/store/hooks";
 import { store } from "@/Folders/store/store";
 import { setToken } from "@/Folders/store/features/auth";
 
@@ -23,18 +22,19 @@ axiosConfig.interceptors.response.use(
             originalRequest._retry = true;
 
             try {
-                const dispatch = useAppDispatch()
-                const refreshResponse =
-                    await axiosConfig(
-                        '/account/refresh',
-                        { method: "POST" }
-                    );
+                const fechRefresh = await fetch(`${ApiUrl}/account/refresh`, {
+                    method: 'POST',
+                    credentials: 'include'
+                })
+
+
+                const refreshResponse = await fechRefresh.json()
+
 
                 const newAccess =
-                    refreshResponse.data.token;
+                    refreshResponse.token;
 
-                store.dispatch(setToken(refreshResponse.data))
-
+                store.dispatch(setToken(refreshResponse))
                 originalRequest.headers.Authorization =
                     `Bearer ${newAccess}`;
 
@@ -53,41 +53,40 @@ axiosConfig.interceptors.response.use(
         }
 
 
-        // Network error (سرور خاموش، timeout و غیره)
-        if (!error.response) {
-            return Promise.reject({
-                type: 'NETWORK_ERROR',
-                original: error,
-            });
-        }
+        // Network error
+        // if (!error.response) {
+        //     return Promise.reject({
+        //         type: 'NETWORK_ERROR',
+        //         original: error,
+        //     });
+        // }
 
         const { status, data } = error.response;
+        return Promise.reject(error)
+        // Error Validation Input
+
+        // if (status === 301) {
+        //     return Promise.reject({
+        //         type: 'VALIDATION_ERROR_INPUT',
+        //         status,
+        //         data,
+        //     });
+        // }
 
         // Error Validation Input
 
-        if (status === 301) {
-            return Promise.reject({
-                type: 'VALIDATION_ERROR_INPUT',
-                status,
-                data,
-            });
-        }
+        // if (status >= 500) {
+        //     return Promise.reject({
+        //         type: 'SERVER_ERROR',
+        //         status,
+        //         data,
+        //     });
+        // }
 
-        // Error Validation Input
-
-        if (status >= 500) {
-            return Promise.reject({
-                type: 'SERVER_ERROR',
-                status,
-                data,
-            });
-        }
-
-        // سایر ارورها (400, 404 و غیره)
-        return Promise.reject({
-            type: 'API_ERROR',
-            status,
-            data,
-        });
+        // return Promise.reject({
+        //     type: 'API_ERROR',
+        //     status,
+        //     data,
+        // });
     }
 );

@@ -101,6 +101,7 @@ class RefeshTokenView(APIView):
             refresh = RefreshToken(refresh_token)
             user_id = refresh["user_id"]
             user = User.objects.get(id=user_id)
+            print(user)
             return Response(
                 {
                     "token": str(refresh.access_token),
@@ -134,7 +135,6 @@ class LogoutVeiw(APIView):
 
 class EditProfileView(APIView):
     permission_classes = [IsAuthenticated]
-
     def patch(self, request):
         serializer = EditeProfile(
             instance=request.user, data=request.data, partial=True

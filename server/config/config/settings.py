@@ -16,18 +16,19 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
+#! loger
+# import sentry_sdk
+# from sentry_sdk.integrations.django import DjangoIntegration
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
-sentry_sdk.init(
-    dsn="YOUR_DSN",
-    integrations=[
-        DjangoIntegration(),
-    ],
-    traces_sample_rate=1.0,
-    send_default_pii=True,
-)
+# sentry_sdk.init(
+#     dsn="YOUR_DSN",
+#     integrations=[
+#         DjangoIntegration(),
+#     ],
+#     traces_sample_rate=1.0,
+#     send_default_pii=True,
+# )
+#! loger
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,7 +48,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # Application definition
 
 INSTALLED_APPS = [
@@ -60,6 +62,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "product",
     "accounts",
+    
     "article",
     "rest_framework_simplejwt.token_blacklist",
     "versatileimagefield",

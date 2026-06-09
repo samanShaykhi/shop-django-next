@@ -2,6 +2,7 @@ import { axiosConfig } from '@/utils/axios/axios'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { User } from '../../../types/user'
+import { ApiUrl } from '@/utils/axios/apiUrl'
 interface AuthState {
   token: string
   loading: boolean
@@ -20,10 +21,15 @@ export const apiGetToken = createAsyncThunk(
   'auth/apiGetToken',
   async (_, thunkAPI) => {
     try {
-      const response = await axiosConfig('/account/refresh',{
-        method:"POST"
+      // const response = await axiosConfig('/account/refresh',{
+      //   method:"POST"
+      // })
+      const response = await fetch(`${ApiUrl}/account/refresh`, {
+        method: 'POST',
+        credentials: 'include'
       })
-      return response.data
+      return await response.json()
+      // return response.data
     } catch (error: unknown) {
       console.log(error)
       if (axios.isAxiosError(error)) {
@@ -50,6 +56,9 @@ export const authSlice = createSlice({
       state.token = action.payload.token
       state.user = action.payload.user
     },
+    setUser: (state, action: PayloadAction<{ user: User }>) => {
+      state.user = action.payload.user
+    },
     cleartToken: state => {
       state.token = ''
       state.user = null
@@ -70,6 +79,6 @@ export const authSlice = createSlice({
       })
   }
 })
-export const { cleartToken, setToken } = authSlice.actions
+export const { cleartToken, setToken, setUser } = authSlice.actions
 
 export default authSlice.reducer

@@ -129,7 +129,7 @@ class ProductImage(models.Model):
     product = models.ForeignKey(
         "Product", on_delete=models.CASCADE, related_name="images"
     )
-    image = VersatileImageField(upload_to="static/images/products/")
+    image = VersatileImageField(upload_to="uploads/images/products/")
     alt_text = models.CharField(max_length=300, blank=True)
     sort_order = models.PositiveIntegerField(default=0)
     is_primary = models.BooleanField(default=False)

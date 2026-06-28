@@ -11,96 +11,40 @@ function NavMenu () {
       <li className={`${styles.itemMenu} ${styles.megamenuLi} `}>
         <Link className={styles.linkmenu} href='/shop'>
           <span> فروشگاه </span>
-          <FaChevronDown />
+          <FaChevronDown className='mr-1' size={12} />
         </Link>
         <div className={styles.megamenu}>
           <div className={styles.ItemMegamenu}>
-            <label> محصولات زیبایی </label>
+            <label> مد و پوشاک مردونه </label>
             <ul className={styles.menuMegamenuItem}>
               <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeNew}> جدید </span>
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeHot}> داغ </span>
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeNew}> جدید </span>
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeHot}> داغ </span>
+                <Link href='/shop?category=Mens-clothing&page=1'>
+                  {' '}
+                  لباس مردونه{' '}
+                </Link>{' '}
               </li>
             </ul>
           </div>
           <div className={styles.ItemMegamenu}>
-            <label> محصولات زیبایی </label>
+            <label> مد و پوشاک زنونه </label>
             <ul className={styles.menuMegamenuItem}>
               <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
+                <Link href='/shop?category=Womens-clothing&page=1'>
+                  {' '}
+                  لباس زنانه{' '}
+                </Link>{' '}
                 <span className={styles.BadgeNew}> جدید </span>
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeHot}> داغ </span>
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeNew}> جدید </span>
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeHot}> داغ </span>
               </li>
             </ul>
           </div>
           <div className={styles.ItemMegamenu}>
-            <label> محصولات زیبایی </label>
+            <label> کیف و کفش </label>
             <ul className={styles.menuMegamenuItem}>
               <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeNew}> جدید </span>
+                <Link href='/shop?category=bag&page=1'> کیف </Link>{' '}
               </li>
               <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeHot}> داغ </span>
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeNew}> جدید </span>
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-              </li>
-              <li>
-                <Link href='/'> ماسک آب رسان </Link>{' '}
-                <span className={styles.BadgeHot}> داغ </span>
+                <Link href='/shop?category=Shoes&page=1'> کفش </Link>{' '}
               </li>
             </ul>
           </div>
@@ -124,10 +68,10 @@ function NavMenu () {
         </div>
       </li>
       <li className={styles.itemMenu}>
-        <Link href='/'> محصولات آرایشی </Link>
+        <Link href='/articles'> خبر نامه </Link>
       </li>
       <li className={styles.itemMenu}>
-        <Link href='/'> محصولات بهداشتی </Link>
+        <Link href='/'> درباره ما </Link>
       </li>
       <li className={styles.itemMenu}>
         <Link href='/contact-us'> تماس با ما </Link>

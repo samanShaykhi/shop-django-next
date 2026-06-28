@@ -12,6 +12,7 @@
 
 .Cart {
     display: flex;
+    margin-bottom: 0.5rem;
 }
 
 .ImgCart {
@@ -30,20 +31,17 @@
     align-items: center;
 }
 
-.OderCart div {
+.OderCart .OderCartBox {
     display: flex;
+    align-items: center;
     border: 1.5px solid rgb(207, 207, 207);
-    padding: 0.5rem;
+    padding: 0.5rem 0;
     color: rgb(223, 0, 0);
-    border-radius: 6px;
+    border-radius: 4px;
     margin-left: 1.5rem;
 }
 
-.OderCart div span {
-    margin: 0 1rem;
-    font-weight: bold;
 
-}
 
 .priceItem {
     font-weight: bold;
@@ -51,27 +49,141 @@
 }
 
 .productCart {
-    width: 68%;
+    width: 60%;
 }
 
 .boxCart {
     position: sticky;
+    margin: 15px 0;
     top: 15px;
     bottom: 20px;
-    width: 28%;
+    width: 35%;
     display: flex;
     flex-direction: column;
-    border: 1px solid #cacaca;
-    border-radius: 6px;
-    padding: 0.8rem;
+    padding: 1.6rem 1rem;
     height: fit-content;
+    border-radius: 16px;
 }
 
-.boxCart button {
+.btnWERZ{
     display: block;
-    background-color: #c80000;
+    background-color: #ff5c35;
     color: #fff;
     padding: 0.8rem;
-    margin: 0.9rem 0;
+    margin-top: 1rem;
     border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+}
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+@media (max-width: 992px) {
+    .wrapper {
+        flex-direction: column;
+    }
+}
+/* =========================
+   Tablet
+========================= */
+@media (max-width: 1024px) {
+
+    .productCart {
+        width: 100%;
+    }
+
+    .boxCart {
+        position: static;
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .bodyCart {
+        padding: 1.2rem 0;
+    }
+
+}
+
+
+/* =========================
+   Mobile
+========================= */
+@media (max-width: 768px) {
+
+    .bodyCart {
+        padding: 1rem 0;
+    }
+
+    .Cart {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .ImgCart {
+        margin: 0 0 1rem;
+    }
+
+    .disCart {
+        width: 100%;
+    }
+
+    .disCart h5 {
+        font-size: 14px;
+        line-height: 28px;
+    }
+
+    .OderCart {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .OderCartBox {
+        justify-content: center;
+        margin-left: 0 !important;
+    }
+
+    .priceItem {
+        text-align: center;
+    }
+
+    .boxCart {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+
+    .btnWERZ {
+        margin-top: 1.5rem;
+    }
+
+}
+
+
+/* =========================
+   Small Phones
+========================= */
+@media (max-width: 480px) {
+
+    .disCart h5 {
+        font-size: 13px;
+        line-height: 24px;
+    }
+
+    .OderCartBox {
+        padding: .6rem;
+        flex-wrap: wrap;
+        gap: .5rem;
+    }
+
+    .btnWERZ {
+        padding: .9rem;
+        font-size: 14px;
+    }
+
 }

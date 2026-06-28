@@ -19,11 +19,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-
+from .views import upload_image,getDataForPageCenter
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("product.urls")),
     path("account/", include("accounts.urls")),
     path("article/", include("article.urls")),
+    path("upload-image/", upload_image, name="upload_image"),
+    path("data-center", getDataForPageCenter.as_view()),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

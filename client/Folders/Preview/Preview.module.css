@@ -1,24 +1,27 @@
 .Modal {
     position: fixed;
-    z-index: 2;
-    height: 480px;
-    width: 60%;
-    top: -500px;
-    overflow: auto;
-    right: 0;
-    left: 0;
-    margin: auto;
+    z-index: 1000;
+    width: min(900px, 95%);
+    max-height: 90vh;
+    overflow-y: auto;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+
     opacity: 0;
     visibility: hidden;
-    transition: 0.5s;
+    transition: .35s;
+    background: #fff;
+    border-radius: 12px;
 }
 
 .ModalActive {
-    top: 100px;
+    transform: translate(-50%, -50%);
     opacity: 1;
     visibility: visible;
-    transition: 0.5s;
 }
+
 
 .Modal::-webkit-scrollbar {
     width: 4px;
@@ -37,11 +40,18 @@
     width: 100%;
     height: 100%;
     position: fixed;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.448);
-    z-index: 1;
-    cursor: pointer;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    z-index: 999;
 }
+
+.BodyModal {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.2rem;
+}
+
 
 .headModal {
     background-color: #000;
@@ -57,20 +67,20 @@
     cursor: pointer;
 }
 
-.BodyModal {
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-}
 
-.disSec {
-    width: 50%;
-}
 
+.disSec,
 .imgSec {
-    width: 50%;
+    flex: 1;
 }
+
+.imgSec img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
 
 .textDisItem h6 {
     font-size: 18px;
@@ -134,20 +144,13 @@
 
 .CartBox button,
 .buyBTN button {
-    width: 85%;
     background-color: #000;
     color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 8px;
-}
-
-.CartBox input {
-    margin-right: auto;
-    width: 12%;
-    text-align: center;
-    outline: none;
-    border-radius: 3px;
-    border: 1.2px solid rgb(221, 221, 221);
+    cursor: pointer;
+    width: 100%;
+    height: 46px;
 }
 
 .buyBTN button {
@@ -180,4 +183,79 @@
     background-color: #c7c7c7;
     margin: 0 0.2rem;
     padding: 0.2rem;
+}
+@media (max-width: 992px) {
+
+    .Modal {
+        width: 92%;
+    }
+
+    .BodyModal {
+        gap: 1.5rem;
+    }
+
+}
+@media (max-width: 768px) {
+
+    .Modal {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .BodyModal {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .disSec,
+    .imgSec {
+        width: 100%;
+    }
+
+    .imgSec {
+        display: flex;
+        justify-content: center;
+    }
+
+    .imgSec img {
+        max-width: 320px;
+    }
+
+    .textDisItem h6 {
+        font-size: 17px;
+    }
+
+    .textDisItem p {
+        font-size: 14px;
+        line-height: 28px;
+    }
+
+    .CartBox {
+        width: 100%;
+    }
+
+}
+@media (max-width: 480px) {
+
+    .headModal {
+        padding: .8rem 1rem;
+    }
+
+    .headModal span {
+        font-size: 15px;
+    }
+
+    .textDisItem h6 {
+        font-size: 16px;
+    }
+
+    .textDisItem p {
+        font-size: 13px;
+        line-height: 24px;
+    }
+
+    .BodyModal {
+        padding: 1rem;
+    }
 }

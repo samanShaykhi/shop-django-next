@@ -2,6 +2,7 @@ import axios from "axios";
 import { ApiUrl } from "./apiUrl";
 import { store } from "@/Folders/store/store";
 import { setToken } from "@/Folders/store/features/auth";
+import { messageCustom } from "../message/message";
 
 
 export const axiosConfig = axios.create({
@@ -42,12 +43,11 @@ axiosConfig.interceptors.response.use(
 
             } catch {
                 console.log('time out refreshtoken')
-                // store.dispatch(logout());
-
-                // window.location.href =
-                //     "/login";
-
-                // return Promise.reject(error);
+                store.dispatch(logout());
+                messageCustom('توکن شما منقضی شده لطفا وارد شوید.', 'error', 7000)
+                window.location.href =
+                    "/login";
+                return Promise.reject(error);
             }
 
         }

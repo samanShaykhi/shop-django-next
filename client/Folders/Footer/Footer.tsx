@@ -17,8 +17,8 @@ export default function Footer () {
               <div className={style.label}>
                 <Image
                   src='/images/logo.png'
-                  width='105'
-                  height='24'
+                  width={105}
+                  height={24}
                   alt='لوگو'
                 />
               </div>
@@ -56,31 +56,29 @@ export default function Footer () {
                 <ul>
                   <li>
                     {' '}
-                    <Link href='/'> فروشگاه </Link>{' '}
+                    <Link href='/shop'> فروشگاه </Link>{' '}
                   </li>
                   <li>
                     {' '}
-                    <Link href='/'> مردانه </Link>{' '}
+                    <Link href='/shop?category=Mens-clothing&page=1'>
+                      {' '}
+                      مردانه{' '}
+                    </Link>{' '}
                   </li>
                   <li>
                     {' '}
-                    <Link href='/'> زنانه </Link>{' '}
+                    <Link href='/shop?category=Womens-clothing&page=1'>
+                      {' '}
+                      زنانه{' '}
+                    </Link>{' '}
                   </li>
                   <li>
                     {' '}
-                    <Link href='/'> بچه گانه </Link>{' '}
+                    <Link href='/shop?category=Shoes&page=1'> کیف </Link>{' '}
                   </li>
                   <li>
                     {' '}
-                    <Link href='/'> کیف </Link>{' '}
-                  </li>
-                  <li>
-                    {' '}
-                    <Link href='/'> کفش </Link>{' '}
-                  </li>
-                  <li>
-                    {' '}
-                    <Link href='/'> لباس </Link>{' '}
+                    <Link href='/shop?category=bag&page=1'> کفش </Link>{' '}
                   </li>
                 </ul>
               </div>
@@ -105,7 +103,7 @@ export default function Footer () {
                   </li>
                   <li>
                     {' '}
-                    <Link href='/'> تماس با ما </Link>{' '}
+                    <Link href='/contact-us'> تماس با ما </Link>{' '}
                   </li>
                 </ul>
               </div>
@@ -124,14 +122,14 @@ export default function Footer () {
               <div className={style.IENE}>
                 <Image
                   src='/images/enamad.png'
-                  width='80'
-                  height='80'
+                  width={80}
+                  height={80}
                   alt='enamad'
                 />
                 <Image
                   src='/images/saman.png'
-                  width='150'
-                  height='150'
+                  width={150}
+                  height={150}
                   alt='samandehi'
                 />
               </div>

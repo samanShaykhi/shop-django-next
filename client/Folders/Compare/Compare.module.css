@@ -1,35 +1,57 @@
 .Compare {
-    background-color: #292a30;
     position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 99;
+    inset: 0;
+    z-index: 999;
+    background: #292a30;
     padding: 1rem;
     opacity: 0;
     visibility: hidden;
-    transition: 0.4s;
+    transition: .35s;
+    overflow: hidden;
 }
 
 .CompareAc {
     opacity: 1;
     visibility: visible;
-    transition: 0.4s;
-
 }
 
 .ModalBody {
-    background-color: #fff;
+    background: #fff;
+    height: calc(100vh - 120px);
     overflow: auto;
-    max-height: 90%;
-    min-height: 90%;
+    border-radius: 10px;
 }
 
 .rowItems {
     margin: 1rem 0;
 }
 
+.QWESD {
+    display: flex;
+}
+
+.QWESD h5 {
+    width: 140px;
+    min-width: 140px;
+    padding: 1rem;
+    font-weight: bold;
+}
+
+.UYI {
+    flex: 1;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+}
+
+.UYI::-webkit-scrollbar {
+    height: 6px;
+}
+
+.UYI::-webkit-scrollbar-thumb {
+    background: #bbb;
+}
 
 .HBX {
     display: flex;
@@ -41,26 +63,12 @@
     cursor: pointer;
 }
 
-.QWESD {
-    display: flex;
-    justify-content: space-between;
-}
 
-.QWESD h5 {
-    margin-right: 1rem;
-    width: 10%;
-}
-
-.UYI {
-    width: 90%;
-    display: flex;
-}
 
 .IMGB {
     display: flex;
     border-bottom: 1px solid rgba(225, 225, 225, 0.5);
     border-left: 1px solid rgba(225, 225, 225, 0.5);
-    padding: 1.5rem 0.5rem;
     width: 290px;
     margin: 0 0.5rem;
 }
@@ -82,9 +90,27 @@
 }
 
 .closeBTN svg {
-    color: rgb(142, 142, 142);
+    color: rgb(255, 22, 22);
     font-size: 25px;
     cursor: pointer;
+    margin: 0 0.2rem;
+}
+
+.IMGITEM {
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+}
+
+.IMGITEM img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.IMGITEM h4 {
+    font-size: 14px;
+    line-height: 24px;
 }
 
 .IMGITEM span {
@@ -94,12 +120,6 @@
     font-weight: bold;
 }
 
-.IMGITEM h4 {
-    margin-top: 0.5rem;
-    text-align: justify;
-    font-size: 12.8px;
-    line-height: 25px;
-}
 
 .Modalfooter {
     display: flex;
@@ -155,4 +175,105 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 20px;
+}
+
+@media(max-width:992px) {
+
+    .QWESD h5 {
+        width: 110px;
+        min-width: 110px;
+        font-size: 15px;
+    }
+
+    .IMGB,
+    .Protitle {
+        flex-basis: 240px;
+        width: 240px;
+    }
+
+}
+
+@media(max-width:768px) {
+
+    .Compare {
+        padding: .5rem;
+    }
+
+    .ModalBody {
+        height: calc(100vh - 90px);
+    }
+
+    .QWESD {
+        align-items: flex-start;
+    }
+
+    .QWESD h5 {
+        width: 85px;
+        min-width: 85px;
+        font-size: 14px;
+        padding: .8rem .4rem;
+    }
+
+    .IMGB,
+    .Protitle {
+        flex-basis: 180px;
+        width: 180px;
+        margin: 0 .25rem;
+    }
+
+    .IMGITEM {
+        min-height: 270px;
+    }
+
+    .IMGITEM h4 {
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    .IMGITEM span {
+        font-size: 13px;
+    }
+
+    .closeBTN svg {
+        font-size: 20px;
+    }
+
+    .Modalfooter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .removeAll {
+        justify-content: center;
+    }
+
+    .BTNFO {
+        justify-content: center;
+    }
+
+}
+
+@media(max-width:480px) {
+
+    .QWESD h5 {
+        width: 70px;
+        min-width: 70px;
+        font-size: 13px;
+    }
+
+    .IMGB,
+    .Protitle {
+        flex-basis: 160px;
+        width: 160px;
+    }
+
+    .IMGITEM {
+        min-height: 245px;
+    }
+
+    .RBTN button {
+        width: 100%;
+        justify-content: center;
+    }
+
 }

@@ -1,10 +1,10 @@
 .boxCart {
     position: absolute;
-    top: 50px;
-    z-index: 3;
+    top: 94px;
+    z-index: 21;
     background-color: #fff;
     width: 390px;
-    left: 0px;
+    left: 15px;
     border-radius: 6px;
     overflow: hidden;
     opacity: 0;
@@ -51,7 +51,6 @@
 
 .Cart {
     display: flex;
-    justify-content: space-between;
     margin-bottom: 0.8rem;
 }
 
@@ -71,7 +70,7 @@
     align-items: center;
 }
 
-.OderCart div {
+.OderCart .BTNOrder {
     display: flex;
     border: 1.5px solid rgb(207, 207, 207);
     padding: 0.5rem;
@@ -81,7 +80,6 @@
 }
 
 .OderCart div span {
-    margin: 0 1rem;
     font-weight: bold;
 
 }
@@ -109,9 +107,10 @@
     color: #8d8d8d;
 }
 
-.BTNAddToCart {
+.BTNAddToCart button{
     background-color: #f00101;
     color: #fff;
     padding: 0.7rem;
     border-radius: 7px;
+    cursor: pointer;
 }

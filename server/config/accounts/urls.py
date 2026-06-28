@@ -7,6 +7,7 @@ from .views import (
     RefeshTokenView,
     LogoutVeiw,
     EditProfileView,
+    Address_Change_View,
 )
 
 from rest_framework.routers import DefaultRouter
@@ -21,4 +22,5 @@ urlpatterns = [
     path("refresh", RefeshTokenView.as_view()),
     path("logout", LogoutVeiw.as_view()),
     path("edit-profile", EditProfileView.as_view()),
+    path("address-changes", Address_Change_View.as_view()),
 ]

@@ -3,7 +3,6 @@ import Banner from './Banners/Banner'
 import Guarantee from './Guarantee/Guarantee'
 import SlidersProducts from './Sliders/SlidersProducts'
 import Title from './Titles/Title'
-import style from './style.module.css'
 import MainSlider from '../sliders/MineSliders/MainSlider'
 import ModalWishList from '../Wishlist/ModalWishList/ModalWishList'
 import Preview from '../Preview/Preview'
@@ -18,30 +17,33 @@ function PageCenter () {
         <MainSlider />
       </div>
       <Guarantee />
-      <Title link='/' textLink='فروشگاه' title='کیف و کفش' />
-      <SlidersProducts />
-      <div className='container mb-[2rem]'>
-        <div className='flex justify-between'>
-          <div className='w-[49%] h-[280px] bg-gradient-to-b from-gray-400 to-black'>
+      <Title link='/shop' textLink='فروشگاه' title='مد و پوشاک مردونه' />
+      <SlidersProducts category='mensCat' />
+      <div className='container mb-8'>
+        <div className='flex flex-col md:flex-row justify-between gap-4'>
+          <div className='w-full md:w-[49%] h-[220px] sm:h-[250px] md:h-[280px] bg-linear-to-b from-gray-400 to-black'>
             <Banner
               headText='فروش ویژه همراه تخفیف'
               disc='فروش ویژه تخفیف‌دار فرصتی استثنایی برای خرید محصولات مورد علاقه با قیمت‌های باور نکردنی است'
-              link='/'
+              link='/shop?category=Shoes&page=1'
               title='تخفیف فوق العاده لباس و کفش های ما'
               urlImage='/images/banner/banner.png'
             />
           </div>
-          <div className='w-[49%] h-[280px]'>
+
+          <div className='w-full md:w-[49%] h-[220px] sm:h-[250px] md:h-[280px]'>
             <Banner
               headText='فروش ویژه همراه تخفیف'
               disc='فروش ویژه تخفیف‌دار فرصتی استثنایی برای خرید محصولات مورد علاقه با قیمت‌های باور نکردنی است'
-              link='/'
+              link='/shop?category=bag&page=1'
               title='تخفیف فوق العاده لباس و کفش های ما'
               urlImage='/images/banner/banner2.png'
             />
           </div>
         </div>
       </div>
+      <Title link='/shop' textLink='فروشگاه' title='مد و پوشاک زنونه' />
+      <SlidersProducts category='womansCat' />
       <ArticlesPageCenter />
     </div>
   )

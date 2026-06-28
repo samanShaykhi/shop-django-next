@@ -1,7 +1,12 @@
+import { axiosConfig } from '@/utils/axios/axios'
 import Link from 'next/link'
-import { useState } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { FaChevronDown } from 'react-icons/fa6'
+import { getErrorMessage } from '../utils/ErrorHandler/Helper'
+import { CategoryProductsType } from '@/types/user'
+import { unknown } from 'zod'
 
 interface ContainerType {
   children: React.ReactNode
@@ -11,6 +16,7 @@ interface ContainerType {
 const Container = ({ children, label, is_active }: ContainerType) => {
   const [isOpen, setisOpen] = useState(is_active ? true : false)
   const ChangeDrop = () => setisOpen(!isOpen)
+
   return (
     <div className='my-5 '>
       <div
@@ -37,54 +43,171 @@ const Container = ({ children, label, is_active }: ContainerType) => {
   )
 }
 export default function Filters () {
+  const [Categorys, setcategorys] = useState<CategoryProductsType[]>([])
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const category = searchParams.get('category')
+  const minPrice = searchParams.get('min_price')
+  const maxPrice = searchParams.get('max_price')
+
+  const router = useRouter()
+  const handleCategory = (value: string) => {
+    const params = new URLSearchParams(searchParams)
+
+    params.set('category', value)
+
+    params.set('page', '1')
+
+    router.push(`${pathname}?${params.toString()}`)
+  }
+
+  const handlePrice = (min: string, max: string) => {
+    const params = new URLSearchParams(searchParams)
+
+    params.set('min_price', min)
+    params.set('max_price', max)
+
+    params.set('page', '1')
+
+    router.push(`${pathname}?${params.toString()}`)
+  }
+  const removeFilter = (key: string) => {
+    const params = new URLSearchParams(searchParams)
+    params.delete(key)
+    router.push(`${pathname}?${params.toString()}`)
+  }
+  useEffect(() => {
+    const GetCategori = async () => {
+      try {
+        const data = await axiosConfig('/product/categories')
+        setcategorys(data.data)
+      } catch (error) {
+        getErrorMessage(error)
+      }
+    }
+    GetCategori()
+  }, [])
+
+  const MIN = 0
+  const MAX = 48000000
+
+  const [minPriceinp, setMinPriceinp] = useState(Number(minPrice) || 0)
+
+  const [maxPriceinp, setMaxPriceinp] = useState(Number(maxPrice) || 48000000)
+  const updatePrice = (newValues: number[]) => {
+    const params = new URLSearchParams(searchParams)
+
+    params.set('min_price', String(newValues[0]))
+
+    params.set('max_price', String(newValues[1]))
+
+    params.set('page', '1')
+
+    const query = params.toString()
+
+    router.replace(`${pathname}?${query}`)
+  }
   return (
     <div className='flex flex-col'>
       <div className=''>
         <Container is_active={true} label='دسته بندی ها'>
           <ul>
-            <li className='text-[#c7c6c6] hover:text-white my-4 cursor-pointer '>
-              <Link href='/'> کیف </Link>
-            </li>
-            <li className='text-[#c7c6c6] hover:text-white my-4 cursor-pointer '>
-              <Link href='/'> لوازم خانگی </Link>
-            </li>
-            <li className='text-[#c7c6c6] hover:text-white my-4 cursor-pointer '>
-              <Link href='/'> فروشگاه کیف و کفش </Link>
-            </li>
-            <li className='text-[#c7c6c6] hover:text-white my-4 cursor-pointer '>
-              <Link href='/'> لوازم الکترونیکی </Link>
-            </li>
-            <li className='text-[#c7c6c6] hover:text-white my-4 cursor-pointer '>
-              <Link href='/'> لوازم جانبی موبایل </Link>
-            </li>
+            {category && (
+              <button
+                onClick={() => removeFilter('category')}
+                className='bg-white p-1 text-[11px] rounded mr-auto cursor-pointer'
+              >
+                حذف فیلتر
+              </button>
+            )}
+            {Categorys && (
+              <>
+                {Categorys.map(cat => {
+                  return (
+                    <li
+                      onClick={() => handleCategory(cat.slug)}
+                      key={cat.id}
+                      className={`${
+                        category === cat.slug
+                          ? 'text-white border-white '
+                          : 'text-[#c7c6c6]'
+                      } hover:text-white my-4 cursor-pointer border-b-3 border-transparent pb-2 w-fit`}
+                    >
+                      {cat.title}
+                    </li>
+                  )
+                })}
+              </>
+            )}
           </ul>
         </Container>
         <Container is_active={true} label='قیمت'>
+          {minPrice && maxPrice && (
+            <button
+              onClick={() => {
+                const params = new URLSearchParams(searchParams)
+                params.delete('max_price')
+                params.delete('min_price')
+                router.push(`${pathname}?${params.toString()}`)
+                setMinPriceinp(0)
+                setMaxPriceinp(48000000)
+              }}
+              className='bg-white p-1 text-[11px] mb-2 block rounded  cursor-pointer'
+            >
+              حذف فیلتر
+            </button>
+          )}
           <div>
-            <div className='flex justify-between text-white items-center mb-4 '>
+            <div>
+              <div className='border p-3 rounded text-white flex items-center justify-between mb-2'>
+                <span>از</span>
+                {minPriceinp.toLocaleString()}
+              </div>
               <input
-                className='w-[85%] border p-2 border-white rounded outline-0'
-                type='text'
-                placeholder='از'
+                type='range'
+                min={MIN}
+                max={MAX}
+                step={1000}
+                value={minPriceinp}
+                onChange={e =>
+                  setMinPriceinp(
+                    Math.min(Number(e.target.value), maxPriceinp - 1000)
+                  )
+                }
+                onMouseUp={() => {
+                  updatePrice([minPriceinp, maxPriceinp])
+                }}
+                onTouchEnd={() => {
+                  updatePrice([minPriceinp, maxPriceinp])
+                }}
+                className=' w-full'
               />
-              <span className=' w-[12%]  '>تومان</span>
             </div>
-            <div className='flex justify-between text-white items-center '>
+            <div>
+              <div className='border mb-2 p-3 rounded text-white flex items-center justify-between'>
+                <span>تا</span>
+                {maxPriceinp.toLocaleString()}
+              </div>
               <input
-                className='w-[85%] border p-2 border-white rounded outline-0'
-                type='text'
-                placeholder='از'
+                type='range'
+                min={MIN}
+                max={MAX}
+                step={1000}
+                value={maxPriceinp}
+                onChange={e =>
+                  setMaxPriceinp(
+                    Math.max(Number(e.target.value), minPriceinp + 1000)
+                  )
+                }
+                onMouseUp={() => {
+                  updatePrice([minPriceinp, maxPriceinp])
+                }}
+                onTouchEnd={() => {
+                  updatePrice([minPriceinp, maxPriceinp])
+                }}
+                className=' w-full'
               />
-              <span className=' w-[12%]  '>تومان</span>
             </div>
-          </div>
-          <div className='flex justify-between items-center my-4'>
-            <button className='bg-white p-3 w-[70%] rounded '>
-              اعمال فیلتر
-            </button>
-            <button className='bg-[#b3b3b3] p-3 w-[25%] rounded border-white border'>
-              حذف
-            </button>
           </div>
         </Container>
         <Container label='جستجو در نتایج'>

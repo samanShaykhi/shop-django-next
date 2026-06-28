@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
-from .models import User
+from .models import User, Address
 from rest_framework import viewsets
-from .serializers import AccountSeri, RegisterUser, EditeProfile
+from .serializers import AccountSeri, RegisterUser, EditeProfile, Address_Serializer
 from .pagination import AccountPagination
 
 from rest_framework.views import APIView
@@ -33,13 +33,7 @@ class RegeisterView(APIView):
         access_token = str(refresh.access_token)
         response = Response(
             {
-                "user": {
-                    "id": user.id,
-                    "first_name": user.first_name,
-                    "last_name": user.last_name,
-                    "email": user.email,
-                    "phone_number": user.phone_number,
-                },
+                "user": AccountSeri(user).data,
                 "token": access_token,
             },
             status=status.HTTP_201_CREATED,
@@ -70,13 +64,7 @@ class LoginView(APIView):
 
         response = Response(
             {
-                "user": {
-                    "id": user.id,
-                    "first_name": user.first_name,
-                    "last_name": user.last_name,
-                    "email": user.email,
-                    "phone_number": user.phone_number,
-                },
+                "user": AccountSeri(user).data,
                 "token": access_token,
             },
             status=status.HTTP_201_CREATED,
@@ -101,7 +89,6 @@ class RefeshTokenView(APIView):
             refresh = RefreshToken(refresh_token)
             user_id = refresh["user_id"]
             user = User.objects.get(id=user_id)
-            print(user)
             return Response(
                 {
                     "token": str(refresh.access_token),
@@ -117,7 +104,7 @@ class RefeshTokenView(APIView):
 class LogoutVeiw(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self, req):
+    def get(self, req):
         refresh_token = req.COOKIES.get("refresh_token")
         if refresh_token:
             try:
@@ -126,15 +113,39 @@ class LogoutVeiw(APIView):
             except Exception:
                 pass
 
-        response = Response({"message": "logout success"})
+        response = Response({"message": "logout success"}, status=status.HTTP_200_OK)
 
         response.delete_cookie("refresh_token")
 
         return response
 
 
+class Address_Change_View(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, req):
+        serializer = Address_Serializer(data=req.data, context={"my_user": req.user})
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status.HTTP_201_CREATED)
+
+    def patch(self, req):
+        address = Address.objects.get(id=req.data["id"], user=req.user)
+
+        serializer = Address_Serializer(
+            instance=address,
+            data=req.data,
+            partial=True,
+            context={"my_user": req.user},
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(AccountSeri(req.user).data, status.HTTP_200_OK)
+
+
 class EditProfileView(APIView):
     permission_classes = [IsAuthenticated]
+
     def patch(self, request):
         serializer = EditeProfile(
             instance=request.user, data=request.data, partial=True

@@ -1,5 +1,19 @@
 import Index from '@/Folders/Index'
+import { ApiUrl } from '@/utils/axios/apiUrl'
+async function getDataCenter () {
+  const res = await fetch(`${ApiUrl}/data-center`, {
+    cache: 'no-store'
+  })
 
-export default function Home () {
-  return <Index />
+  if (!res.ok) {
+    throw new Error('خطا در دریافت دیتا')
+  }
+
+  return res.json()
+}
+
+
+export default async function Home () {
+  const data = await getDataCenter()
+  return <Index data={data} />
 }

@@ -1,12 +1,14 @@
-
-import { createSlice } from '@reduxjs/toolkit'
+import { ProductType } from '@/types/user'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface typeState {
   status: boolean
+  product: ProductType | null
 }
 
 const statusState: typeState = {
-  status: false
+  status: false,
+  product: null
 }
 export const ModalWishListSlice = createSlice({
   name: 'preview',
@@ -14,8 +16,11 @@ export const ModalWishListSlice = createSlice({
   reducers: {
     changeStatusMP: state => {
       state.status = !state.status
+    },
+    changeProductPreview: (state, action: PayloadAction<ProductType>) => {
+      state.product = action.payload
     }
   }
 })
-export const { changeStatusMP } = ModalWishListSlice.actions
+export const { changeStatusMP, changeProductPreview } = ModalWishListSlice.actions
 export default ModalWishListSlice.reducer

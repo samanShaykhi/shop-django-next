@@ -46,7 +46,7 @@
 }
 
 .Mor button:hover {
-    border: transparent;
+    border-bottom: transparent;
     transition: all 0.08s;
 }
 

@@ -1,6 +1,8 @@
 from django.db import models
 from accounts.models import User
 from versatileimagefield.fields import VersatileImageField
+from django.core.validators import MinValueValidator, MaxValueValidator
+import secrets
 
 # Create your models here.
 
@@ -36,50 +38,55 @@ class Category(models.Model):
         return f"{self.title}"
 
 
+def generate_number_order():
+    return secrets.randbelow(
+        90000000
+    ) + 10000000
+
+    
 class Order(models.Model):
-    user = models.ForeignKey(
-        User,
-        related_name="orders",
-        on_delete=models.PROTECT,
-        db_index=True,
-        verbose_name="سفارش دهنده",
-    )
-    product = models.ForeignKey(
-        "Product",
-        related_name="orders",
-        on_delete=models.PROTECT,
-        db_index=True,
-        verbose_name="محصول",
-    )
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
     SELECTED_CHOISE = [
         (1, "پرداخت شده"),
         (2, "در حال ارسال"),
         (3, "ارسال شده"),
         (4, "لغو شده"),
     ]
-    status = models.SmallIntegerField(choices=SELECTED_CHOISE, db_index=True, default=1)
-    create_at = models.DateTimeField(auto_now_add=True, db_index=True)
-    total_price = models.IntegerField(verbose_name="کل قیمت")
+    status = models.SmallIntegerField(
+        choices=SELECTED_CHOISE,
+        db_index=True,
+        default=1,
+    )
     note = models.TextField(verbose_name="نکات سفارش")
-
-    class Meta:
-        verbose_name = "سفارش"
-        verbose_name_plural = "سفارشات"
-        ordering = [
-            "-create_at",
-        ]
-        indexes = [
-            models.Index(fields=["create_at", "status"]),
-            models.Index(fields=["user", "status"]),
-        ]
-        constraints = [
-            models.UniqueConstraint(
-                fields=["user", "product"], name="unique_user_product_order"
-            )
-        ]
+    order_number = models.PositiveIntegerField(
+        unique=True,
+        default=generate_number_order,
+        editable=False,
+        db_index=True,
+    )
+    address = models.JSONField(default=dict)
 
     def __str__(self):
-        return f"سفارش: {self.id} - {self.user.first_name} {self.user.last_name}"
+        return f"سفارش: {self.id} - {self.user.fullname}"
+
+    class Meta:
+        verbose_name = "سفارشات"
+        verbose_name_plural = "سفارشات"
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
+    product = models.ForeignKey("Product", on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField(default=1)
+    price = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"آیتم سفارش: {self.id} - {self.product}"
+
+    class Meta:
+        verbose_name = "آیتم سفارش"
+        verbose_name_plural = "آیتم های سفارش"
 
 
 class Comment(models.Model):
@@ -93,11 +100,22 @@ class Comment(models.Model):
         verbose_name="محصول",
     )
     content = models.TextField(max_length=2000, verbose_name="متن کامنت")
-    create_at = models.DateField(auto_now_add=True, verbose_name="تاریخ ایجاد")
+    created_at = models.DateField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     is_active = models.BooleanField(default=False, verbose_name="وضعیت کامنت")
     star = models.IntegerField(
-        default=1, verbose_name="امتیاز خرید", blank=True, null=True
+        default=1,
+        verbose_name="امتیاز خرید",
+        blank=True,
+        null=True,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(5),
+        ],
     )
+
+    class Meta:
+        verbose_name = "کامنت"
+        verbose_name_plural = "کامنت ها"
 
 
 class Product(models.Model):
@@ -105,13 +123,13 @@ class Product(models.Model):
     discription = models.TextField(max_length=2000, verbose_name="توضیحات")
     price = models.IntegerField(verbose_name="قیمیت محصول")
     stock = models.IntegerField(default=0, verbose_name="موجودی")
-    category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name="product"
+    category = models.ManyToManyField(
+        Category, related_name="product", verbose_name="دسته بندی"
     )
     seller = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="فروشنده", related_name="seller"
     )
-    create_at = models.DateField(auto_now_add=True, verbose_name="تاریخ ایجاد")
+    created_at = models.DateField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     update_at = models.DateField(auto_now=True, verbose_name="تاریخ آخرین بروز رسانی")
     is_active = models.BooleanField(default=False, verbose_name="وضعیت محصول")
     slug = models.CharField(max_length=200, verbose_name="مسیر url محصول", unique=True)
@@ -119,7 +137,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = "محصول"
         verbose_name_plural = "محصولات"
-        ordering = ["-create_at"]
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"{self.title} {self.seller}"

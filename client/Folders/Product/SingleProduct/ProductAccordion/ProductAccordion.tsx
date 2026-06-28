@@ -1,23 +1,11 @@
 'use client'
 
+import { CommentType } from '@/types/user'
+import Image from 'next/image'
 import { useState } from 'react'
 import { FaRegUser } from 'react-icons/fa6'
-import { IoStar } from 'react-icons/io5'
 import { TiStarFullOutline } from 'react-icons/ti'
 
-//  bg-[var(--minColer)]
-interface Profile {
-  image?: string
-  first_name: string
-  last_name: string
-}
-interface Comment {
-  id: number
-  profile: Profile
-  createdAt: string
-  text_comment: string
-  star: number
-}
 type DescriptionItem = {
   nameItem: 'discription'
   lable: string
@@ -29,7 +17,7 @@ type DescriptionItem = {
 type CommentsItem = {
   nameItem: 'comments'
   lable: string
-  content: Comment[]
+  content: CommentType[]
 }
 
 type LableType = DescriptionItem | CommentsItem
@@ -44,7 +32,7 @@ export default function ProductAccordion ({ items }: { items: LableType[] }) {
             <div
               onClick={() => setCurentItem(index + 1)}
               className={`
-                ${curentItem === index + 1 && 'text-[var(--secondary_Coler)]'}
+                ${curentItem === index + 1 && `text-(--secondary_Coler)`}
                 ml-4 text-gray-500 text-[16px] border-b-2 border-b-transparent cursor-pointer hover:text-[var(--secondary_Coler)]  hover:border-b-[var(--secondary_Coler)] transition
                 `}
               style={{
@@ -77,15 +65,25 @@ export default function ProductAccordion ({ items }: { items: LableType[] }) {
                     return (
                       <div key={index} className=' my-6'>
                         <div className='flex items-center'>
-                          <div className='bg-gray-200 text-[#9e9e9e] p-2 rounded-[100%] ml-3  '>
-                            <FaRegUser size={35} />
-                          </div>
-                          <div className='flex flex-col' >
-                            <div>
-                              <span> {comment.profile.first_name} </span>
-                              <span> {comment.profile.last_name} </span>
+                          {comment.user.profile_image ? (
+                            <Image
+                              className='object-cover rounded-[100%] ml-3'
+                              width={45}
+                              height={45}
+                              alt='profile_image'
+                              unoptimized
+                              src={comment.user.profile_image}
+                            />
+                          ) : (
+                            <div className='bg-gray-200 text-[#9e9e9e] p-2 rounded-[100%] ml-3  '>
+                              <FaRegUser size={35} />
                             </div>
-                            <div className='flex text-[14px] text-[#8a8a8a] ' >
+                          )}
+                          <div className='flex flex-col'>
+                            <div>
+                              <span> {comment.user.fullname} </span>
+                            </div>
+                            <div className='flex text-[14px] text-[#8a8a8a] '>
                               <TiStarFullOutline />
                               <TiStarFullOutline />
                               <TiStarFullOutline />
@@ -93,7 +91,7 @@ export default function ProductAccordion ({ items }: { items: LableType[] }) {
                             </div>
                           </div>
                         </div>
-                        <div className='mt-4'>{comment.text_comment}</div>
+                        <div className='mt-4'>{comment.content}</div>
                       </div>
                     )
                   })}

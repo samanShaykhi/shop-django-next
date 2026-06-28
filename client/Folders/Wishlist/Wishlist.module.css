@@ -45,29 +45,32 @@
     padding: 1rem;
     color: #fff;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Modal Whislist  */
 .Modal {
     position: fixed;
+    width: 65%;
+    top: 50%;
+    left: 50%;
     z-index: 2;
     height: 480px;
-    width: 60%;
-    top: -500px;
     overflow: auto;
-    right: 0;
-    left: 0;
-    margin: auto;
+    transform: translate(-50%, -60%);
     opacity: 0;
     visibility: hidden;
-    transition: 0.5s;
+
+    transition:
+        transform .35s ease,
+        opacity .35s ease,
+        visibility .35s;
 }
 
 .ModalActive {
-    top: 100px;
+    transform: translate(-50%, -50%);
     opacity: 1;
     visibility: visible;
-    transition: 0.5s;
 }
 
 .Modal::-webkit-scrollbar {
@@ -102,11 +105,144 @@
     padding: 1rem;
 }
 
-.headModal span {}
-
 .headModal svg {
     font-size: 25px;
     cursor: pointer;
 }
 
 /* Modal Whislist  */
+/* =========================
+   Tablet
+========================= */
+@media (max-width: 992px) {
+    .Modal {
+        width: 85%;
+        height: 75vh;
+    }
+
+    .item {
+        gap: 1rem;
+    }
+
+    .btnAddTocart button {
+        padding: .8rem 1rem;
+        font-size: 14px;
+    }
+}
+
+/* =========================
+   Mobile
+========================= */
+@media (max-width: 768px) {
+
+    .Modal {
+        width: 95%;
+        height: 80vh;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -60%);
+    }
+
+    .ModalActive {
+        transform: translate(-50%, -50%);
+    }
+
+    .item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .disIt {
+        width: 100%;
+    }
+
+    .dis {
+        width: 100%;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .dis img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+    }
+
+    .DTX {
+        flex: 1;
+    }
+
+    .DTX h3 {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .btnAddTocart {
+        width: 100%;
+    }
+
+    .btnAddTocart button {
+        width: 100%;
+        padding: .9rem;
+        font-size: 14px;
+    }
+
+    .close svg {
+        font-size: 22px;
+    }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+@media (max-width: 480px) {
+
+
+    .Modal {
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        transform: translate(0, -100%);
+        border-radius: 0;
+    }
+
+    .ModalActive {
+        transform: translate(0, 0);
+    }
+
+    .headModal {
+        padding: .8rem 1rem;
+    }
+
+    .headModal span {
+        font-size: 15px;
+    }
+
+    .headModal svg {
+        font-size: 22px;
+    }
+
+    .item {
+        padding: .8rem;
+    }
+
+    .dis img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .DTX h3 {
+        font-size: 14px;
+    }
+
+    .DTX span {
+        font-size: 12px;
+    }
+
+    .btnAddTocart button {
+        font-size: 13px;
+        padding: .8rem;
+    }
+}

@@ -1,4 +1,6 @@
 from django.db import models
+from versatileimagefield.fields import VersatileImageField
+from tinymce.models import HTMLField
 
 # Create your models here.
 
@@ -28,7 +30,13 @@ class Category(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=300, verbose_name="عنوان مقاله")
-    discription = models.TextField(max_length=10000, verbose_name="توضیحات مقاله")
+    short_discription = models.CharField(max_length=300, verbose_name="توضیحات کوتاه")
+
+    image_article = VersatileImageField(
+        upload_to="articles/thumbnail/", verbose_name="پوستر مقاله"
+    )
+    slug = models.CharField(max_length=200, verbose_name="مسیر url مقاله", unique=True)
+    body = HTMLField(verbose_name="مقاله")
     create_at = models.DateField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     category = models.ForeignKey(
         "Category",

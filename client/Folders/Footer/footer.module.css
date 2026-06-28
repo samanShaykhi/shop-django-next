@@ -9,7 +9,8 @@
     justify-content: center;
     align-items: center;
     color: #fff;
-    padding: 3rem 0;
+    padding: 3rem 1rem;
+    text-align: center;
 }
 
 .HeadFoot h6 {
@@ -18,29 +19,28 @@
     margin-bottom: 1rem;
 }
 
+.HeadFoot p {
+    max-width: 700px;
+    line-height: 30px;
+}
+
 .footer {
     background-color: #333333;
+    padding: 2rem 0 1rem;
+}
+
+.MinFooter {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 1rem 0;
+    align-items: flex-start;
+    gap: 2rem;
 }
-.MinFooter{
-    display: flex ;
-    justify-content: space-between;
-    align-items: center;
-}
+
 .ItemFooter {
     width: 25%;
     color: #777;
-    margin-bottom: auto;
-    margin-left: 3rem;
 }
-.ItemFooter:last-child{
-    margin-left: 0;
 
-}
 .label {
     margin-bottom: 1rem;
 }
@@ -59,26 +59,28 @@
 
 .TRS p:hover {
     color: var(--minColer);
-    transition: 0.4s;
 }
 
 .TRX {
     display: flex;
+    flex-wrap: wrap;
     margin-top: 1rem;
+    gap: 0.75rem;
 }
 
 .TRX a {
-    margin-left: 1rem;
     border: 1.5px solid #fff;
     padding: 0.6rem;
     border-radius: 50%;
     transition: 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .TRX a:hover {
     border-color: var(--minColer);
     color: #fff;
-    transition: 0.4s;
 }
 
 .TRX a svg {
@@ -87,30 +89,139 @@
 
 .IENE {
     display: flex;
+    align-items: center;
+    gap: 1rem;
     margin-top: 1rem;
+    flex-wrap: wrap;
 }
 
 .IENE img {
-    object-fit: cover;
+    object-fit: contain;
+    max-width: 100%;
+    height: auto;
 }
 
 .LYOP ul li {
-    margin: 0.5rem 0;
+    margin: 0.75rem 0;
     transition: 0.4s;
 }
 
 .LYOP ul li:hover {
     color: var(--minColer);
-    transition: 0.4s;
 }
-.FRTFX{
+
+.DFZW p {
+    line-height: 30px;
+    text-align: justify;
+}
+
+.FRTFX {
     margin-top: 2rem;
     border-top: 1.5px solid #6a6a6a;
+    padding-top: 1rem;
+    text-align: center;
 }
+
 .FRTFX span {
     color: #7b7b7b;
     display: block;
-    margin-top: 0.5rem;
     font-size: 13px;
-    
+}
+
+/* =======================
+   Tablet
+======================= */
+
+@media (max-width: 992px) {
+    .MinFooter {
+        flex-wrap: wrap;
+    }
+
+    .ItemFooter {
+        width: calc(50% - 1rem);
+    }
+}
+
+/* =======================
+   Mobile
+======================= */
+
+@media (max-width: 768px) {
+    .HeadFoot {
+        padding: 2rem 1rem;
+    }
+
+    .HeadFoot h6 {
+        font-size: 20px;
+    }
+
+    .HeadFoot p {
+        font-size: 14px;
+        line-height: 28px;
+    }
+
+    .MinFooter {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .ItemFooter {
+        width: 100%;
+    }
+
+    .label {
+        margin-bottom: 0.75rem;
+    }
+
+    .label label {
+        font-size: 17px;
+    }
+
+    .TRS p,
+    .DFZW p {
+        font-size: 14px;
+        line-height: 28px;
+    }
+
+    .TRX {
+        justify-content: center;
+    }
+
+    .IENE {
+        justify-content: center;
+    }
+
+    .FRTFX span {
+        line-height: 24px;
+    }
+}
+
+/* =======================
+   Small Mobile
+======================= */
+
+@media (max-width: 480px) {
+    .HeadFoot h6 {
+        font-size: 18px;
+    }
+
+    .HeadFoot p {
+        font-size: 13px;
+    }
+
+    .TRX a {
+        padding: 0.5rem;
+    }
+
+    .TRX a svg {
+        font-size: 17px;
+    }
+
+    .label label {
+        font-size: 16px;
+    }
+
+    .FRTFX span {
+        font-size: 12px;
+    }
 }

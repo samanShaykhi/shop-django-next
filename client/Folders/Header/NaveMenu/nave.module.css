@@ -9,10 +9,7 @@
 
 .linkmenu {
     display: flex;
-}
-
-.linkmenu svg {
-    width: 14px;
+    align-items: center;
 }
 
 .megamenuLi:hover>.megamenu {
@@ -22,7 +19,7 @@
 }
 
 .megamenu {
-    width: 100%;
+    width: 95%;
     overflow: hidden;
     display: flex;
     background-color: #fff;
@@ -30,7 +27,8 @@
     border-radius: 10px;
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
     position: absolute;
-    top: 60px;
+    top: 90px;
+    right: 36px !important;
     justify-content: space-between;
     inset-inline-start: 0;
     opacity: 0;
@@ -39,8 +37,9 @@
     transition:
         opacity 0.3s ease,
         transform 0.3s ease;
-    z-index: 1;
+    z-index: 21;
 }
+
 .ItemMegamenu {
     margin-left: 1rem;
 }

@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import style from './Title.module.css'
 import ContinuousTextSlider from './BannerSlider/ContinuousTextSlider'
+import Link from 'next/link'
 
 interface InputTitle {
   title: string
@@ -19,7 +19,7 @@ export default function Title ({ title, link, textLink }: InputTitle) {
           <ContinuousTextSlider />
           <div className={style.BtnItem}>
             <button>
-              <Link href={`/${link}`}>{textLink}</Link>
+              <Link href={`${link}`}>{textLink}</Link>
             </button>
           </div>
         </div>

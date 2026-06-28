@@ -1,3 +1,4 @@
+import { messageCustom } from '@/utils/message/message'
 import axios from 'axios'
 
 interface ApiErrorResponse {
@@ -6,15 +7,20 @@ interface ApiErrorResponse {
   message: string
 }
 
-export function getErrorMessage (error: unknown): string {
+export function getErrorMessage (error: unknown) {
+  console.log(error)
   if (axios.isAxiosError<ApiErrorResponse>(error)) {
     console.log(error.response?.data)
-    return error.response?.data?.message || error.message || 'خطای ناشناخته'
+    return messageCustom(
+      error.response?.data?.message || error.message || 'خطای ناشناخته',
+      'error',
+      7000
+    )
   }
 
   if (error instanceof Error) {
-    return error.message
+    return messageCustom(error.message, 'error', 7000)
   }
 
-  return 'خطای ناشناخته'
+  return messageCustom('خطای ناشناخته', 'error', 7000)
 }

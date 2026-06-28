@@ -4,17 +4,19 @@ import useEmblaCarousel from 'embla-carousel-react'
 import Product from '../Product/Product'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 import style from './sliders.module.css'
-interface ProductType {
-  id: number
-  name: string
-  image: string
-}
+import { useAppSelector } from '@/Folders/store/hooks'
+import { ProductType } from '@/types/user'
 
 interface Props {
-  products?: ProductType[]
+  category?: string
+  related_products?: ProductType[]
 }
 
-const SlidersProducts: React.FC<Props> = ({ products }) => {
+const SlidersProducts: React.FC<Props> = ({
+  category,
+  related_products
+}: Props) => {
+  const { productCats } = useAppSelector(state => state.auth)
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
     align: 'start'
@@ -42,7 +44,7 @@ const SlidersProducts: React.FC<Props> = ({ products }) => {
 
   return (
     <div className={`${style.Slider} container`}>
-      <div className={style.BTNBox} >
+      <div className={style.BTNBox}>
         <button
           onClick={scrollPrev}
           className='absolute left-0 top-1/2 cursor-pointer transform -translate-y-1/2 z-10 bg-white p-2 rounded shadow hover:bg-[#ead4ca] hover:text-white transition'
@@ -58,27 +60,48 @@ const SlidersProducts: React.FC<Props> = ({ products }) => {
       </div>
       <div className='overflow-hidden' ref={emblaRef}>
         <div className='flex gap-4'>
-          <div className='flex-shrink-0 w-[70%] sm:w-[45%] lg:w-[24.3%] '>
-            <Product />
-          </div>
-          <div className='flex-shrink-0 w-[70%] sm:w-[45%] lg:w-[24.3%] '>
-            <Product />
-          </div>
-          <div className='flex-shrink-0 w-[70%] sm:w-[45%] lg:w-[24.3%] '>
-            <Product />
-          </div>
-          <div className='flex-shrink-0 w-[70%] sm:w-[45%] lg:w-[24.3%] '>
-            <Product />
-          </div>
-          <div className='flex-shrink-0 w-[70%] sm:w-[45%] lg:w-[24.3%] '>
-            <Product />
-          </div>
-          <div className='flex-shrink-0 w-[70%] sm:w-[45%] lg:w-[24.3%] '>
-            <Product />
-          </div>
-          <div className='flex-shrink-0 w-[70%] sm:w-[45%] lg:w-[24.3%] '>
-            <Product />
-          </div>
+          {category === 'mensCat' && (
+            <>
+              {productCats?.mensCat.map(product => {
+                return (
+                  <div
+                    key={product.id}
+                    className='flex-shrink-0 w-[70%] sm:w-[45%] lg:w-[24.3%] '
+                  >
+                    <Product productItem={product} />
+                  </div>
+                )
+              })}
+            </>
+          )}
+          {category === 'womansCat' && (
+            <>
+              {productCats?.womansCat.map(product => {
+                return (
+                  <div
+                    key={product.id}
+                    className='flex-shrink-0 w-[70%] sm:w-[45%] lg:w-[24.3%] '
+                  >
+                    <Product productItem={product} />
+                  </div>
+                )
+              })}
+            </>
+          )}
+          {related_products?.length && (
+            <>
+              {related_products.map(product => {
+                return (
+                  <div
+                    key={product.id}
+                    className='shrink-0 w-[70%] sm:w-[45%] lg:w-[24.3%] '
+                  >
+                    <Product productItem={product} />
+                  </div>
+                )
+              })}
+            </>
+          )}
         </div>
       </div>
     </div>

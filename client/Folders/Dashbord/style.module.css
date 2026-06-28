@@ -1,38 +1,75 @@
 .dashbordLayout{
-    display: flex;
-    justify-content: space-between;
-}
-.sidebarDashbord{
-    width: 15%;
-    background-color: #212631;
-    overflow: auto;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-}
-.sidebarDashbord::-webkit-scrollbar {
-  width: 8px;
+    display:flex;
+    min-height:100vh;
 }
 
-/* track (پس‌زمینه) */
-.sidebarDashbord::-webkit-scrollbar-track {
-  background: #212631;
-}
-
-/* thumb (دسته اسکرول) */
-.sidebarDashbord::-webkit-scrollbar-thumb {
-  background: #000000;
-  border-radius: 8px;
-}
-
-/* hover حالت */
-.sidebarDashbord::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.sidebarDesktop{
+    width:260px;
+    position:fixed;
+    right:0;
+    top:0;
+    height:100vh;
+    background:#212631;
+    overflow:auto;
 }
 
 .contentDashbord{
-    width: 100%;
-    background-color: #fffaf4;
-    padding: 0 1.5rem;
-    padding-right: 260px;
+    flex:1;
+    margin-right:260px;
+    background:#fffaf4;
+    min-height:100vh;
+    padding:0 1.5rem;
+}
+
+/* Mobile Drawer */
+
+.sidebarMobile{
+    position:fixed;
+    top:0;
+    right:0;
+    width:260px;
+    height:100vh;
+    background:#212631;
+    z-index:999;
+    transform:translateX(100%);
+    transition:.35s ease;
+}
+
+.open{
+    transform:translateX(0);
+}
+
+.backdrop{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    opacity:0;
+    visibility:hidden;
+    transition:.35s;
+    z-index:998;
+}
+
+.showBackdrop{
+    opacity:1;
+    visibility:visible;
+}
+@media (min-width:768px){
+
+    .sidebarMobile{
+        display:none;
+    }
+
+}
+
+@media (max-width:767px){
+
+    .sidebarDesktop{
+        display:none;
+    }
+
+    .contentDashbord{
+        margin-right:0;
+        padding:0;
+    }
+
 }

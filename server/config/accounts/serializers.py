@@ -1,9 +1,55 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Address
 from rest_framework.validators import UniqueValidator
 from PIL import Image
 
+
+class Address_Serializer(serializers.ModelSerializer):
+    receiver_name = serializers.CharField(max_length=100, min_length=4)
+    province_city = serializers.CharField(max_length=100, min_length=3)
+    address = serializers.CharField(max_length=1000, min_length=10)
+    address_details = serializers.CharField(max_length=500, min_length=10)
+    postal_code = serializers.CharField(max_length=11, min_length=10)
+    receiver_phone = serializers.CharField(max_length=11)
+
+    def create(self, validated_data):
+        user = self.context["my_user"]
+        return Address.objects.create(user=user, **validated_data)
+
+    def update(self, instance, validated_data):
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        instance.save()
+        return instance
+
+    class Meta:
+        model = Address
+        fields = (
+            "id",
+            "receiver_name",
+            "province_city",
+            "address",
+            "address_details",
+            "postal_code",
+            "receiver_phone",
+        )
+
+
+class UserSrializerForComment(serializers.ModelSerializer):
+    class Meta:
+        model= User
+        fields = (
+            "username",
+            "email",
+            "fullname",
+            "profile_image",
+        )
+
+
 class AccountSeri(serializers.ModelSerializer):
+    addresses = Address_Serializer(read_only=True, many=True)
+
     class Meta:
         model = User
         fields = (
@@ -13,7 +59,7 @@ class AccountSeri(serializers.ModelSerializer):
             "fullname",
             "profile_image",
             "phone_number",
-            "adres",
+            "addresses",
         )
 
 

@@ -1,15 +1,17 @@
-import { Timer, Headphones } from 'lucide-react'
+import { CiHeadphones } from "react-icons/ci";
+import { TiMediaRecord } from "react-icons/ti";
+
 export default function ContactUs () {
   return (
     <div className='container'>
-      <div className='my-[2rem] relative'>
-        <h1 className="text-2xl font-bold before:content-[''] before:absolute before:bottom-[-10px]  before:w-[60px] before:h-[2.5px] before:bg-[#858585]">
+      <div className='my-8 relative'>
+        <h1 className="text-2xl font-bold before:content-[''] before:absolute before:-bottom-2.5 before:w-[60px] before:h-[2.5px] before:bg-[#858585]">
           تماس با نیواتو
         </h1>
       </div>
-      <div className='mb-[2rem] shadow p-5 rounded-2xl'>
+      <div className='mb-8 shadow p-5 rounded-2xl'>
         <div>
-          <span className='text-[20px] mt-[2rem] font-bold block mb-4'>
+          <span className='text-[20px] mt-8 font-bold block mb-4'>
             {' '}
             دفتر مرکزی{' '}
           </span>
@@ -22,14 +24,14 @@ export default function ContactUs () {
         <div className='my-4 '>
           <div className='my-6 flex justify-center '>
             <div className='flex'>
-              <Timer />
+              <TiMediaRecord />
               <span>پاسخگویی ۲۴ ساعته و ۷ روز هفته</span>
             </div>
           </div>
           <div className='flex justify-between'>
-            <div className='bg-[#efefef] w-[48%] text-center rounded-[4px]  py-4'>
+            <div className='bg-[#efefef] w-[48%] text-center rounded-sm py-4'>
               <div>
-                <Headphones className='m-auto' />
+                <CiHeadphones className='m-auto' />
                 <span className='my-2 block'>تلفن تماس و فکس</span>
               </div>
               <div>
@@ -37,9 +39,9 @@ export default function ContactUs () {
                 <span className='block mt-2'>۰۲۱ - ۶۱۹۳۰۰۰۰</span>
               </div>
             </div>
-            <div className='bg-[#efefef] w-[48%] text-center rounded-[4px]  py-4'>
+            <div className='bg-[#efefef] w-[48%] text-center rounded-sm  py-4'>
               <div>
-                <Headphones className='m-auto' />
+                <CiHeadphones className='m-auto' />
                 <span className='my-2 block'>ایمیل سازمانی</span>
               </div>
               <div>
@@ -49,10 +51,10 @@ export default function ContactUs () {
           </div>
         </div>
       </div>
-      <form action='' className='my-[3rem]'>
+      <form action='' className='my-12'>
         <div className='p-5 border-[1.5] border-[#e4e4e4]  rounded-2xl'>
           <div className=' relative'>
-            <span className="text-2xl mb-6 block font-bold before:content-[''] before:absolute before:bottom-[-10px]  before:w-[60px] before:h-[2.5px] before:bg-[#858585]">
+            <span className="text-2xl mb-6 block font-bold before:content-[''] before:absolute before:-bottom-2.5  before:w-[60px] before:h-[2.5px] before:bg-[#858585]">
               ارسال پیام به ما
             </span>
           </div>
@@ -87,7 +89,7 @@ export default function ContactUs () {
               </div>
             </div>
           </div>
-          <div className='flex justify-between my-[1.5rem]'>
+          <div className='flex justify-between my-6'>
             <div className='w-1/2'>
               <div className='pl-5'>
                 <label htmlFor=''>ایمیل</label>
@@ -131,7 +133,7 @@ export default function ContactUs () {
               />
             </div>
           </div>
-          <div className='w-full my-[1.5rem]'>
+          <div className='w-full my-6'>
             <div>
               <label htmlFor=''>
                 متن پیام

@@ -48,8 +48,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 # Application definition
 
 INSTALLED_APPS = [
@@ -62,12 +62,14 @@ INSTALLED_APPS = [
     "rest_framework",
     "product",
     "accounts",
-    
+    "django_filters",
     "article",
     "rest_framework_simplejwt.token_blacklist",
     "versatileimagefield",
     "adminsortable2",
     "corsheaders",
+    # "django_ckeditor_5",
+    "tinymce",
 ]
 
 AUTH_USER_MODEL = "accounts.User"
@@ -169,7 +171,10 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
 }
 
-# AUTHENTICATION_BACKENDS = ["accounts.backends.PhoneBackend"]
+AUTHENTICATION_BACKENDS = [
+    "accounts.backends.PhoneBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 
 
 # Internationalization
@@ -188,3 +193,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+
+TINYMCE_DEFAULT_CONFIG = {
+    "height": 500,
+    "width": "100%",
+    "language": "fa",
+    "directionality": "rtl",
+    "plugins": "image link media table code lists",
+    "toolbar": "undo redo | bold italic | image",
+    "images_upload_url": "/upload-image/",
+    "automatic_uploads": True,
+}

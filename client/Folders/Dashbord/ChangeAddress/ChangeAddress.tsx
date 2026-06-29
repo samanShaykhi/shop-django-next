@@ -17,7 +17,7 @@ import { CgSpinner } from 'react-icons/cg'
 import { FaAngleLeft } from 'react-icons/fa6'
 import { TiStarFullOutline } from 'react-icons/ti'
 type propse = {
-  closeModal: () => void
+  closeModal?: () => void
   for_Modal?: boolean
 }
 export default function ChangeAddress ({ closeModal, for_Modal }: propse) {
@@ -102,7 +102,7 @@ export default function ChangeAddress ({ closeModal, for_Modal }: propse) {
       setpostal_code('')
       setreceiver_phone('')
       setfechLoading(false)
-      closeModal()
+      closeModal?.()
       messageCustom('آدرس تغییر کرد.', 'success', 4000)
     } catch (error) {
       setfechLoading(false)

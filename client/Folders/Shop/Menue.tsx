@@ -1,5 +1,5 @@
-import { ChevronDown } from 'lucide-react'
 import React, { useState } from 'react'
+import { BsChevronDown } from 'react-icons/bs'
 
 export interface MenuItem {
   id: string
@@ -55,7 +55,7 @@ const MenuItemComponent: React.FC<{ item: MenuItem; level: number }> = ({
               isOpen ? 'rotate-90' : 'rotate-0'
             }`}
           >
-            <ChevronDown />
+            <BsChevronDown />
           </span>
         )}
       </div>

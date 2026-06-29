@@ -69,7 +69,6 @@ INSTALLED_APPS = [
     "versatileimagefield",
     "adminsortable2",
     "corsheaders",
-    # "django_ckeditor_5",
     "tinymce",
 ]
 

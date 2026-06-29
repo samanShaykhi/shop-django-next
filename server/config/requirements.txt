@@ -7,3 +7,6 @@ djangorestframework
 djangorestframework-simplejwt
 django-admin-sortable2
 django-cors-headers
+django-versatileimagefield
+django-filter
+django-tinymce

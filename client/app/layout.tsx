@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: 'فروشگاه آنلاین',
   description: 'انواع اجناس با بهترین قیمت'
 }
+
 export default function RootLayout ({
   children
 }: Readonly<{

@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
-import 'leaflet/dist/leaflet.css'
 import './globals.css'
-
 import StoreProvider from '@/Folders/store/StoreProvider'
 import AuthInitializer from '@/Folders/AuthInitializer'
 import NextTopLoader from 'nextjs-toploader'

@@ -52,11 +52,12 @@ export default function Shipping () {
 
     setActiveChangeAddress(false)
   }
-  if (auth.loading || !cart || !address) {
+  if (auth.loading || !cart) {
     return <ShippingSkeleton />
   }
 
   const handleSendOrder = async () => {
+    if (!address) return setActiveChangeAddress(true)
     try {
       await axiosConfig('/order', {
         method: 'POST',
@@ -166,8 +167,8 @@ export default function Shipping () {
                 <CiLocationOn className='ml-1' />
                 <span>
                   {' '}
-                  {address?.province_city} - {address?.address} -{' '}
-                  {address?.address_details}{' '}
+                  {auth.user?.addresses?.[0]?.province_city} - {auth.user?.addresses?.[0]?.address} -{' '}
+                  {auth.user?.addresses?.[0]?.address_details}{' '}
                 </span>
               </div>
               <div className=''>

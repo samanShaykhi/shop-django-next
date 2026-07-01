@@ -57,14 +57,14 @@ export default function GalleryProduct ({ images }: ProductGalleryProps) {
     }
 
     if (dragOffset > threshold) {
-      if (curentIndex < images.length - 1) {
-        setCurentIndex(prev => prev + 1)
+      if (curentIndex > 0) {
+        setCurentIndex(prev => prev - 1)
       }
     }
 
     if (dragOffset < -threshold) {
-      if (curentIndex > 0) {
-        setCurentIndex(prev => prev - 1)
+      if (curentIndex < images.length - 1) {
+        setCurentIndex(prev => prev + 1)
       }
     }
 
@@ -191,28 +191,28 @@ export default function GalleryProduct ({ images }: ProductGalleryProps) {
           {/* previous */}
           <button
             onClick={BTNPreviouseHandle}
-            className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 rounded-full bg-black/70 text-white p-2 md:p-3 ${
+            className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 rounded-full bg-black/70 text-white p-2 md:p-3 ${
               curentIndex === 0 ? 'opacity-40' : ''
             }`}
           >
-            <FaChevronRight />
+            <FaChevronLeft />
           </button>
 
           {/* next */}
           <button
             onClick={BTN_NextHandle}
-            className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 rounded-full bg-black/70 text-white p-2 md:p-3 ${
+            className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 rounded-full bg-black/70 text-white p-2 md:p-3 ${
               curentIndex === images.length - 1 ? 'opacity-40' : ''
             }`}
           >
-            <FaChevronLeft />
+            <FaChevronRight />
           </button>
         </div>
       </div>
 
       {zoomInSlider && (
         <button
-          className='fixed top-4 right-4 z-[60]'
+          className='fixed top-4 right-4 z-60'
           onClick={() => setzoomInSlider(false)}
         >
           <AiOutlineClose size={35} className='cursor-pointer' />

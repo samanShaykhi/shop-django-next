@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { PropsDataCenterType, User } from '../../../types/user'
+import { AddressType, PropsDataCenterType, User } from '../../../types/user'
 import { ApiUrl } from '@/utils/axios/apiUrl'
 interface AuthState {
   token: string
@@ -57,6 +57,11 @@ export const authSlice = createSlice({
     setUser: (state, action: PayloadAction<{ user: User }>) => {
       state.user = action.payload.user
     },
+    setAddresses: (state, action: PayloadAction<AddressType>) => {
+      if (state.user) {
+        state.user.addresses = [action.payload]
+      }
+    },
     setDataCenter: (state, action) => {
       state.productCats = action.payload
     },
@@ -80,7 +85,7 @@ export const authSlice = createSlice({
       })
   }
 })
-export const { cleartToken, setToken, setUser, setDataCenter } =
+export const { cleartToken, setToken, setAddresses, setUser, setDataCenter } =
   authSlice.actions
 
 export default authSlice.reducer

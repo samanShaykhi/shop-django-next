@@ -1,5 +1,5 @@
 'use client'
-import { setUser } from '@/Folders/store/features/auth'
+import { setAddresses, setUser } from '@/Folders/store/features/auth'
 import { useAppDispatch, useAppSelector } from '@/Folders/store/hooks'
 import Breadcrumbs from '@/Folders/utils/Breadcrumbs/Breadcrumbs'
 import { getErrorMessage } from '@/Folders/utils/ErrorHandler/Helper'
@@ -76,10 +76,10 @@ export default function ChangeAddress ({ closeModal, for_Modal }: propse) {
   }, [user, reset, dispatch])
   const onSubmit = async (data: AddressFormType) => {
     let getId
-    if (user?.addresses) getId = user?.addresses[0].id
     let method = 'POST'
     if (user?.addresses) {
       if (user.addresses.length > 0) {
+        getId = user?.addresses[0].id
         method = 'PATCH'
       }
     }
@@ -94,7 +94,7 @@ export default function ChangeAddress ({ closeModal, for_Modal }: propse) {
       })
 
       const fechData = (await Sending_Address).data
-      dispatch(setUser({ user: fechData }))
+      dispatch(setAddresses(fechData))
       setreceiver_name('')
       setprovince_city('')
       setaddress('')

@@ -1,4 +1,4 @@
-interface Address {
+export interface AddressType {
   id: string
   receiver_name: string
   province_city: string
@@ -22,7 +22,7 @@ export type User = {
   email: string
   profile_image: string
   phone_number: string
-  addresses?: Address[]
+  addresses?: AddressType[]
 }
 export interface Pagenation {
   count: number
@@ -85,7 +85,7 @@ type ItemsOrder = {
   price: number
 }
 export interface OrderTypes {
-  address: Address
+  address: AddressType
   created_at: string
   id: number
   items: ItemsOrder[]

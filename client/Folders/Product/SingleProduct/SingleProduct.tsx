@@ -9,20 +9,46 @@ import { ProductType } from '@/types/user'
 import SlidersProducts from '@/Folders/PageCenter/Sliders/SlidersProducts'
 import { AddToCart } from '@/Folders/utils/cart'
 import { useAppDispatch } from '@/Folders/store/hooks'
+import { messageCustom } from '@/utils/message/message'
+import { changeProductsWhishList } from '@/Folders/store/features/ModalWishListSlice'
 type Props = {
   product: ProductType
 }
 export default function SingleProduct ({ product }: Props) {
   const dispatch = useAppDispatch()
+  const handleLocalStorageSave = () => {
+    const products = JSON.parse(localStorage.getItem('wishlist') || '[]')
+    if (products.length > 0) {
+      const coppyProduct = [...products]
+      const exist = coppyProduct.find(prod => prod.id === product.id)
+      if (exist) {
+        messageCustom(
+          'این محصول در لیست علاقه مندی ها وجود دارد.',
+          'warning',
+          4000
+        )
+      } else {
+        coppyProduct.push(product)
+        localStorage.setItem('wishlist', JSON.stringify(coppyProduct))
+        dispatch(changeProductsWhishList(coppyProduct))
+      }
+    } else {
+      localStorage.setItem('wishlist', JSON.stringify([product]))
+      messageCustom(
+        'محصول به لیست علاقه مندی ها  اضافه شد.',
+        'success',
+        4000
+      )
+      return dispatch(changeProductsWhishList([product]))
+    }
+  }
   return (
     <div className='container my-6'>
       <Breadcrumbs
         homeLabel='خانه'
         items={[
-          { label: 'محصولات', href: 'test' },
-          { label: 'پوشاک', href: 'test1' },
-          { label: 'کیف وکفش', href: 'test2' },
-          { label: 'کفش کتونی تابستون', href: 'test3' }
+ 
+          { label: product.title,  }
         ]}
         separator={<FaAngleLeft />}
       />
@@ -70,7 +96,10 @@ export default function SingleProduct ({ product }: Props) {
           </div>
 
           <div className='flex gap-3 items-center'>
-            <div className='shrink-0'>
+            <div
+              onClick={handleLocalStorageSave}
+              className='shrink-0 cursor-pointer'
+            >
               <span className='border border-[#dedede] flex items-center justify-center p-3 rounded'>
                 <CiBookmark size={34} />
               </span>

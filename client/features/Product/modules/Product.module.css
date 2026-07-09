@@ -1,0 +1,182 @@
+.Product {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow .25s ease, transform .25s ease;
+    padding-bottom: 1rem;
+}
+
+.Product:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+    transform: translateY(-2px);
+}
+
+/* ---------- Buttons ---------- */
+
+.ProComBTN {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    display: flex;
+    flex-direction: column;
+
+    opacity: 0;
+    transform: translateX(20px);
+
+    transition: .3s ease;
+    z-index: 5;
+}
+
+.Product:hover .ProComBTN {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.ProComBTN svg {
+    width: 38px;
+    height: 38px;
+
+    padding: 8px;
+    margin-bottom: 8px;
+
+    border-radius: 50%;
+    border: 1.5px solid #2a2a2a;
+
+    background: #2a2a2a;
+    color: #fff;
+
+    cursor: pointer;
+    transition: .25s;
+}
+
+.ProComBTN svg:hover {
+    background: #fff;
+    color: #2a2a2a;
+}
+
+/* ---------- Description ---------- */
+
+.proDis {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+
+    padding: 12px;
+}
+
+.proDis h4 {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.7;
+    text-align: right;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    overflow: hidden;
+}
+
+.disIT {
+    margin-top: 8px;
+
+    color: #8b8b8b;
+    font-size: 13px;
+    line-height: 1.8;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    overflow: hidden;
+}
+
+/* ---------- Price ---------- */
+
+.price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: auto;
+    padding-top: 12px;
+
+    font-weight: bold;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width:1024px){
+
+    .Product{
+        min-height:320px;
+    }
+
+    .proDis h4{
+        font-size:14px;
+    }
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:768px){
+
+    .Product{
+        min-height:290px;
+        border-radius:8px;
+    }
+
+    
+    .proDis{
+        padding:10px;
+    }
+
+    .proDis h4{
+        font-size:14px;
+    }
+
+    .disIT{
+        font-size:12px;
+    }
+
+    .price{
+        font-size:14px;
+    }
+
+}
+
+/* ---------- Small phones ---------- */
+
+@media (max-width:480px){
+
+    .Product{
+        min-height:260px;
+    }
+
+    .ProComBTN svg{
+        width:30px;
+        height:30px;
+        padding:6px;
+    }
+
+    .proDis h4{
+        font-size:13px;
+    }
+
+    .disIT{
+        font-size:11px;
+    }
+
+    .price{
+        font-size:13px;
+    }
+
+}

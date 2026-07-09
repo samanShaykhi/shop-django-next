@@ -1,4 +1,4 @@
-import SingleArticle from '@/Folders/Article/SingleArticle/SingleArticle'
+import SingleArticle from '@/features/Article/SingleArticle/SingleArticle'
 import { ApiUrl } from '@/utils/axios/apiUrl'
 import { notFound } from 'next/navigation'
 

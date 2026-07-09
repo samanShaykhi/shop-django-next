@@ -1,4 +1,4 @@
-import DashbordLayout from '@/Folders/Dashbord/DashbordLayout'
+import DashbordLayout from '@/features/Dashbord/DashbordLayout'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

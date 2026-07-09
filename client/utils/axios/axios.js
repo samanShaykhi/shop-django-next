@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ApiUrl } from "./apiUrl";
-import { store } from "@/Folders/store/store";
-import { setToken } from "@/Folders/store/features/auth";
+import { store } from "@/features/store/store";
+import { setToken } from "@/features/store/features/auth";
 import { messageCustom } from "../message/message";
 
 

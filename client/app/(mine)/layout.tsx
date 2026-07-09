@@ -1,6 +1,6 @@
 // app/(dashboard)/layout.tsx
-import Footer from '@/Folders/Footer/Footer'
-import Header from '@/Folders/Header/Header'
+import Footer from '@/components/common/Footer'
+import Header from '@/features/Header/Components/Header'
 import { ReactNode } from 'react'
 
 type MainLayoutLayoutProps = {

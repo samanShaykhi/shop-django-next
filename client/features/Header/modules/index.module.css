@@ -1,0 +1,274 @@
+.Header {
+    border-bottom: 2px solid rgb(222, 222, 222);
+}
+
+.headerBox {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+}
+
+.IconeBox {
+    display: flex;
+    align-items: center;
+}
+
+.IconeBox svg {
+    margin-left: 0.7rem;
+}
+
+.IconeBox div:last-child {
+    margin-left: 0 !important;
+}
+
+.IconeBox .Heart,
+.IconeBox .bag {
+    position: relative;
+    cursor: pointer;
+
+}
+
+.bag span,
+.Heart span {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    font-size: 11px;
+    top: -4px;
+    right: -8px;
+}
+
+.logoBox img {
+    max-width: 100%;
+    height: auto;
+}
+
+.mobileMenu {
+    display: none;
+}
+
+.mobileOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    z-index: 998;
+}
+
+.mobileDrawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    max-width: 85%;
+    height: 100vh;
+    background: #fff;
+    z-index: 999;
+    padding: 1.5rem;
+    overflow-y: auto;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, .15);
+}
+
+.mobileDrawerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1rem;
+}
+
+.mobileDrawerHeader span {
+    font-weight: bold;
+}
+
+.mobileDrawerHeader button {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.mobileNav li {
+    padding: 1rem 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.mobileNav li a {
+    display: block;
+    width: 100%;
+}
+
+/*!  */
+.mobileOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .55);
+    backdrop-filter: blur(4px);
+    z-index: 998;
+}
+
+.mobileDrawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    max-width: 85%;
+    height: 100vh;
+    background: #fff;
+    z-index: 999;
+    padding: 1.5rem;
+    overflow-y: auto;
+    box-shadow:
+        -15px 0 50px rgba(0, 0, 0, .15),
+        -4px 0 15px rgba(0, 0, 0, .08);
+}
+
+.mobileDrawerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ececec;
+}
+
+.mobileDrawerHeader span {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.mobileDrawerHeader button {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+.mobileNav li a {
+    display: block;
+    padding: 14px 12px;
+    border-radius: 12px;
+    transition: .25s;
+}
+
+.mobileNav li a:hover {
+    background: #f5f5f5;
+    transform: translateX(-4px);
+}
+
+.HeaderSticky {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    background: #fff;
+    animation: slideDown .35s ease;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, .08);
+}
+
+
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: .5;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1025px) {
+    .mobileMenu {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .menuBox {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .headerBox {
+        padding: 0 12px;
+        margin-top: 0.75rem;
+    }
+
+    .menuBox {
+        display: none;
+    }
+
+    .logoBox img {
+        width: 110px;
+        height: auto;
+    }
+
+    .IconeBox {
+        gap: 8px;
+    }
+
+
+
+    .IconeBox .Heart,
+    .IconeBox .bag {
+        margin-left: 0;
+    }
+
+    .bag span,
+    .Heart span {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        font-size: 10px;
+        right: -6px;
+        top: -3px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .headerBox {
+        height: auto;
+        padding: 12px;
+        margin-top: .5rem;
+        flex-wrap: wrap;
+        row-gap: 12px;
+    }
+
+    .mobileMenu {
+        display: flex;
+        order: 1;
+        align-items: center;
+    }
+
+    .logoBox {
+        order: 2;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .logoBox img {
+        width: 95px;
+    }
+
+    .IconeBox {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 18px;
+        margin-top: 6px;
+    }
+
+    .IconeBox .Heart,
+    .IconeBox .bag {
+        margin-left: 0;
+    }
+}

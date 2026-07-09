@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import StoreProvider from '@/Folders/store/StoreProvider'
-import AuthInitializer from '@/Folders/AuthInitializer'
+import StoreProvider from '@/features/store/StoreProvider'
+import AuthInitializer from '@/features/AuthInitializer'
 import NextTopLoader from 'nextjs-toploader'
 import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";

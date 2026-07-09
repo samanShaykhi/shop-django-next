@@ -64,8 +64,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://api.zovix.ir",
 ]
 
-MEDIA_ROOT = '/home/zovixir/api.zovix.ir/media'
-MEDIA_URL = '/media/'
+MEDIA_ROOT = "/home/zovixir/api.zovix.ir/media"
+MEDIA_URL = "/media/"
 
 # MEDIA_URL = "/media/"
 # MEDIA_ROOT = BASE_DIR / "media"
@@ -122,7 +122,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 
 # Database

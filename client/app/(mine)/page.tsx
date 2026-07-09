@@ -1,4 +1,4 @@
-import Index from '@/Folders/Index'
+import Index from '@/features/Index'
 import { ApiUrl } from '@/utils/axios/apiUrl'
 async function getDataCenter () {
   const res = await fetch(`${ApiUrl}/data-center`, {

@@ -15,7 +15,7 @@ export const addressSchema = z.object({
     .min(10, 'آدرس باید حداقل 10 کاراکتر باشد')
     .max(500, 'آدرس بیش از حد طولانی است'),
 
-  address_details: z.string().trim().min(2, 'جزئیات آدرس را وارد کنید'),
+  address_details: z.string().trim().min(10, 'جزئیات آدرس نباید از 10 کارکتر کمتر باشد.').max(400, 'جزئیات آدرس نباید از 400 کارکتر بیشتر باشد.'),
 
   postal_code: z.string().regex(/^\d{10}$/, 'کد پستی باید 10 رقم باشد'),
 

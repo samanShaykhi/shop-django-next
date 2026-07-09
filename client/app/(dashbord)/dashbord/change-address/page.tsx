@@ -1,4 +1,4 @@
-import ChangeAddress from '@/Folders/Dashbord/ChangeAddress/ChangeAddress'
+import ChangeAddress from '@/features/Dashbord/ChangeAddress/ChangeAddress'
 
 export default function page () {
   return <ChangeAddress   />

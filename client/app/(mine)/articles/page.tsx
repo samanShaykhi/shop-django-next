@@ -1,4 +1,4 @@
-import AllArticle from '@/Folders/Article/AllArticle'
+import AllArticle from '@/features/Article/components/AllArticle'
 import { ApiUrl } from '@/utils/axios/apiUrl'
 async function getArticles () {
   const res = await fetch(`${ApiUrl}/article/articles`, {

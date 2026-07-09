@@ -1,4 +1,4 @@
-import Wishlist from "@/Folders/Wishlist/Wishlist";
+import Wishlist from "@/features/Wishlist/components/Wishlist";
 
 export default function page () {
   return <Wishlist />

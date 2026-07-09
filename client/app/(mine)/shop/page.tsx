@@ -1,5 +1,5 @@
 
-import Shop from '@/Folders/Shop/Shop'
+import Shop from '@/features/Shop/components/Shop'
 import { Suspense } from 'react'
 
 export default function page () {

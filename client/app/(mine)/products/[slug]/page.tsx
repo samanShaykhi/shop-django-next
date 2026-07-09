@@ -1,4 +1,4 @@
-import SingleProduct from '@/Folders/Product/SingleProduct/SingleProduct'
+import SingleProduct from '@/features/Product/SingleProduct/SingleProduct'
 import { ApiUrl } from '@/utils/axios/apiUrl'
 import { notFound } from 'next/navigation'
 
